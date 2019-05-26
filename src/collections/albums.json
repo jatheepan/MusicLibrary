@@ -1,0 +1,37 @@
+[{
+  "id": 1,
+  "title": "Thriller 25",
+  "artist": "Michael Jackson"
+}, {
+  "id": 2,
+  "title": "Off the Wall",
+  "artist": "Michael Jackson"
+}, {
+  "id": 3,
+  "title": "Dangerous",
+  "artist": "Michael Jackson"
+}, {
+  "id": 4,
+  "title": "Xscape",
+  "artist": "Michael Jackson"
+}, {
+  "id": 5,
+  "title": "Immortal",
+  "artist": "Michael Jackson"
+}, {
+  "id": 6,
+  "title": "Prism",
+  "artist": "Katy Perry"
+}, {
+  "id": 7,
+  "title": "Witness",
+  "artist": "Katy Perry"
+}, {
+  "id": 8,
+  "title": "Reputation",
+  "artist": "Taylor Swift"
+}, {
+  "id": 9,
+  "title": "Red",
+  "artist": "Taylor Swift"
+}]

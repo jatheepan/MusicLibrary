@@ -1,37 +1,46 @@
 [{
   "id": 1,
   "title": "Thriller 25",
-  "artist": "Michael Jackson"
+  "artist": "Michael Jackson",
+  "thumbnail": "https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=300&q=80"
 }, {
   "id": 2,
   "title": "Off the Wall",
-  "artist": "Michael Jackson"
+  "artist": "Michael Jackson",
+  "thumbnail": "https://images.unsplash.com/photo-1498038432885-c6f3f1b912ee?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=300&q=80"
 }, {
   "id": 3,
   "title": "Dangerous",
-  "artist": "Michael Jackson"
+  "artist": "Michael Jackson",
+  "thumbnail": "https://images.unsplash.com/photo-1473646590311-c48e1bc77b44?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=300&q=80"
 }, {
   "id": 4,
   "title": "Xscape",
-  "artist": "Michael Jackson"
+  "artist": "Michael Jackson",
+  "thumbnail": "https://images.unsplash.com/photo-1415201364774-f6f0bb35f28f?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=300&q=80"
 }, {
   "id": 5,
   "title": "Immortal",
-  "artist": "Michael Jackson"
+  "artist": "Michael Jackson",
+  "thumbnail": "https://images.unsplash.com/photo-1421757350652-9f65a35effc7?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=300&q=80"
 }, {
   "id": 6,
   "title": "Prism",
-  "artist": "Katy Perry"
+  "artist": "Katy Perry",
+  "thumbnail": "https://images.unsplash.com/photo-1455503521443-c39d5b861bc4?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=300&q=80"
 }, {
   "id": 7,
   "title": "Witness",
-  "artist": "Katy Perry"
+  "artist": "Katy Perry",
+  "thumbnail": "https://images.unsplash.com/photo-1516450360452-9312f5e86fc7?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=300&q=80"
 }, {
   "id": 8,
   "title": "Reputation",
-  "artist": "Taylor Swift"
+  "artist": "Taylor Swift",
+  "thumbnail": "https://images.unsplash.com/photo-1485565036208-bcf966c955a6?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=300&q=80"
 }, {
   "id": 9,
   "title": "Red",
-  "artist": "Taylor Swift"
+  "artist": "Taylor Swift",
+  "thumbnail": "https://images.unsplash.com/photo-1508073890584-e7aa13246994?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=300&q=80"
 }]

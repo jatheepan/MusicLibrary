@@ -1,11 +1,18 @@
-import albums from './albums.json';
-import songs from './songs.json';
+import albumsCollection from './albums.json';
+import songsCollection from './songs.json';
 
 function getAlbums() {
-  return Promise.resolve(albums);
+  return Promise.resolve(albumsCollection);
 }
 
 function getSongs() {
+  const songs = songsCollection.map(song => {
+    const album = albumsCollection.find(a => a.id === song.album_id);
+    if(album) {
+      song.album = album;
+    }
+    return song;
+  });
   return Promise.resolve(songs);
 }
 

@@ -1,5 +1,6 @@
 import React from 'react';
-import './App.css';
+import Library from './components/library';
+import './App.scss';
 
 function App() {
   return (

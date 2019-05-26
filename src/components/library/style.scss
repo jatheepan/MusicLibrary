@@ -19,7 +19,7 @@
   .row {
     .column {
       vertical-align: middle;
-      padding: 0.5em 0;
+      padding: 0.6em 0;
       text-overflow: ellipsis;
       white-space: nowrap;
       overflow: hidden;
@@ -41,5 +41,17 @@
   }
   .duration {
     width: 10%;
+  }
+  .message {
+    padding: 0.6em;
+    text-align: center;
+    border: 1px solid #000;
+    border-radius: 3px;
+    margin-bottom: 0.7em;
+  }
+
+  .error {
+    color: #d31414;
+    border-color: #d31414;
   }
 }

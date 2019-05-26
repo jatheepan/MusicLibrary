@@ -1,7 +1,7 @@
 import db from '../collections/db';
 
-function getSongs() {
-  return db.getSongs();
+function getSongs(query, sort) {
+  return db.getSongs(sort);
 }
 
 function getAlbums() {

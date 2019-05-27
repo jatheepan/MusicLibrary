@@ -14,12 +14,10 @@ function songsReducer(initialState = {
   const state = {};
   switch(type) {
     case SONGS_DID_FETCH:
-      state.loading = false;
       state.songs = payload;
       break;
 
     case SONGS_FETCH_ERROR:
-      state.loading = false;
       state.error = payload;
       break;
 

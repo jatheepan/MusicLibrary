@@ -7,7 +7,7 @@ import songsCollection from './songs.json';
 */
 function delayedResolve(payload) {
   return new Promise(resolve => {
-    setTimeout(() => resolve(payload), 400);
+    setTimeout(() => resolve(payload), 100);
   });
 }
 

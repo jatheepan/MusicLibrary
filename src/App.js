@@ -1,10 +1,10 @@
 import React from 'react';
 import Library from './components/library';
 import { library } from '@fortawesome/fontawesome-svg-core';
-import { faCaretUp, faCaretDown, faSearch } from '@fortawesome/free-solid-svg-icons';
+import { faCaretUp, faCaretDown, faSearch, faCompactDisc } from '@fortawesome/free-solid-svg-icons';
 import './App.scss';
 
-library.add([faCaretUp, faCaretDown, faSearch]);
+library.add([faCaretUp, faCaretDown, faSearch, faCompactDisc]);
 
 function App() {
   return (

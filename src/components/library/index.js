@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import LoadSpinner from '../LoadSpinner';
 import actions from '../../actions';
 import './style.scss';
 
@@ -50,6 +51,7 @@ class Library extends Component {
       <div className="Library">
         <div className="header">
           <h1>Library</h1>
+          <LoadSpinner loading={this.props.loading} />
           <div className="search-form">
             <div className="search-field">
               <input

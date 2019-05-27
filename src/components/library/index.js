@@ -51,34 +51,42 @@ class Library extends Component {
         <div className="header">
           <h1>Library</h1>
           <div className="search-form">
-            <input
-              defaultValue={this.props.query}
-              onKeyUp={e => {
-              const query = e.target.value;
-              if(e.keyCode === 13) {
-                const {sort} = this.props;
-                this.props.updateQuery(query);
-                this.props.getSongs(query, sort);
-              }
-            }} />
+            <div className="search-field">
+              <input
+                defaultValue={this.props.query}
+                placeholder="Search Song, Album or Artist"
+                onKeyUp={e => {
+                const query = e.target.value;
+                if(e.keyCode === 13) {
+                  const {sort} = this.props;
+                  this.props.updateQuery(query);
+                  this.props.getSongs(query, sort);
+                }
+              }} />
+              <button><FontAwesomeIcon icon="search" /></button>
+            </div>
           </div>
         </div>
         {errorMessage}
-        <div className="table-header">
-          <div className="column title" onClick={() => this.sort('title')}>
-            Title <SortIcon sort={this.props.sort} name="title" />
+        <div className="table">
+          <div className="table-header">
+            <div className="column title" onClick={() => this.sort('title')}>
+              Title <SortIcon sort={this.props.sort} name="title" />
+            </div>
+            <div className="column album" onClick={() => this.sort('album')}>
+              Album <SortIcon sort={this.props.sort} name="album" />
+            </div>
+            <div className="column artist" onClick={() => this.sort('artist')}>
+              Artist <SortIcon sort={this.props.sort} name="artist" />
+            </div>
+            <div className="column duration" onClick={() => this.sort('duration')}>
+              Duration <SortIcon sort={this.props.sort} name="duration" />
+            </div>
           </div>
-          <div className="column album" onClick={() => this.sort('album')}>
-            Album <SortIcon sort={this.props.sort} name="album" />
-          </div>
-          <div className="column artist" onClick={() => this.sort('artist')}>
-            Artist <SortIcon sort={this.props.sort} name="artist" />
-          </div>
-          <div className="column duration" onClick={() => this.sort('duration')}>
-            Duration <SortIcon sort={this.props.sort} name="duration" />
+          <div className="table-body">
+            {listItems}
           </div>
         </div>
-        {listItems}
       </div>
     );
   }

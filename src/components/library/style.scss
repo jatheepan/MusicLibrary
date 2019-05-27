@@ -1,30 +1,42 @@
-$column-padding: 0.6%;
+$column-padding: 1%;
+$header-height: 4em;
 
 .Library {
+  padding-top: $header-height;
+  .table {
+    display: flex;
+    flex-direction: column;
+    height: calc(100vh - #{$header-height});
+  }
   .table-header {
-    border-bottom: 1px solid rgba(0,0,0,0.1);
+    border-bottom: 3px solid rgba(0,0,0,0.4);
     .column {
       cursor: pointer;
-      font-weight: bold;
+      color: #fff;
     }
   }
 
+  .table-body {
+    flex: 1;
+    overflow-y: scroll;
+  }
+
   .column {
-    padding: 0.8em $column_padding;
+    padding: 0.8em $column-padding;
     display: inline-block;
   }
 
   .row {
     .column {
       vertical-align: middle;
-      padding: $column-padding;
+      padding: 1em $column-padding;
       text-overflow: ellipsis;
       white-space: nowrap;
       overflow: hidden;
     }
 
-    &:nth-child(odd) {
-      background-color: rgba(0,0,0,0.03);
+    &:hover {
+      background-color: rgba(0,0,0,0.4);
     }
   }
 
@@ -51,4 +63,50 @@ $column-padding: 0.6%;
     color: #d31414;
     border-color: #d31414;
   }
+
+  .header {
+    position: fixed;
+    left: 0;
+    right: 0;
+    top: 0;
+    padding: 0 1em;
+    height: $header-height;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    h1 {
+      color: #ff0090;
+      margin: 0;
+      padding: 0;
+    }
+
+    .search-field {
+      background-color: rgba(0,0,0,0.3);
+      padding: 0 0.3em 0 1em;
+      border-radius: 2em;
+      display: inline-block;
+      input {
+        padding: 0.6em 0;
+        outline: none;
+        background-color: transparent;
+        font-size: 1em;
+        border: none;
+        width: 14em;
+        color: #fff;
+      }
+      button {
+        cursor: pointer;
+        padding: 0.6em;
+        font-size: 1em;
+        background-color: transparent;
+        border: none;
+        outline: none;
+        color: rgba(255, 255, 255, 0.5);
+        &:hover {
+          color: #fff;
+        }
+      }
+    }
+  }
+
 }

@@ -1,6 +1,10 @@
 import albumsCollection from './albums.json';
 import songsCollection from './songs.json';
 
+/**
+ * Just to simulate the delay of real api calls.
+ * @param payload
+*/
 function delayedResolve(payload) {
   return new Promise(resolve => {
     setTimeout(() => resolve(payload), 400);
@@ -11,7 +15,7 @@ function getAlbums() {
   return Promise.resolve(albumsCollection);
 }
 
-function getSongs(sort = {property: 'title', direction: 'asc'}) {
+function getSongs(query = '', sort = {property: 'title', direction: 'asc'}) {
   let songs = songsCollection.map(song => {
     const album = albumsCollection.find(a => a.id === song.album_id);
     if(album) {
@@ -19,12 +23,23 @@ function getSongs(sort = {property: 'title', direction: 'asc'}) {
     }
     return song;
   });
-  sortList(songs, sort);
+
+  songs = sortList(filterList(songs, query), sort);
   return delayedResolve(songs);
 }
 
+function filterList(list, query) {
+  query = (query || '').trim();
+  if(query.length < 1) return list;
+  return list.filter(item => {
+    const pattern = new RegExp(query, 'gi');
+    return pattern.test(item.title) || pattern.test(item.album.title) || pattern.test(item.album.artist);
+  });
+}
+
 function sortList(list, sort) {
-  list.sort((a, b) => {
+  const newList = [].concat(list);
+  return newList.sort((a, b) => {
     let value1, value2 = null;
     if(sort.property === 'title') {
       value1 = a.title;
@@ -47,8 +62,6 @@ function sortList(list, sort) {
     result = sort.direction === 'desc' ? !result : result;
     return result ? 1 : -1;
   });
-
-  return list;
 }
 
 export default {

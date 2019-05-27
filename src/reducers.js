@@ -3,10 +3,15 @@ import {
   SONGS_WILL_FETCH,
   SONGS_DID_FETCH,
   SONGS_FETCH_ERROR,
-  SORT_LIBRARY
+  SORT_LIBRARY,
+  UPDATE_SEARCH_QUERY
 } from './actions';
 
-function libraryReducer(initialState = {songs: [], sort: {property: 'title', direction: 'asc'}}, {type, payload}) {
+function libraryReducer(initialState = {
+  songs: [],
+  sort: {property: 'title', direction: 'asc'},
+  query: ''
+}, {type, payload}) {
   const state = {};
   switch(type) {
     case SONGS_WILL_FETCH:
@@ -25,6 +30,10 @@ function libraryReducer(initialState = {songs: [], sort: {property: 'title', dir
 
     case SORT_LIBRARY:
       state.sort = payload;
+      break;
+
+    case UPDATE_SEARCH_QUERY:
+      state.query = payload;
       break;
 
     default:

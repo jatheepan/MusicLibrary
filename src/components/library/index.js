@@ -21,17 +21,18 @@ const SortIcon = ({sort, name}) => {
 
 class Library extends Component {
   componentDidMount() {
-    const {sort} = this.props;
-    this.props.getSongs(null, sort);
+    const {sort, query} = this.props;
+    this.props.getSongs(query, sort);
   }
 
   sort = newProperty => {
-    let {sort} = this.props;
+    let {sort, query} = this.props;
     if(newProperty === sort.property) {
       sort.direction = sort.direction === 'asc' ? 'desc': 'asc';
     }
     sort.property = newProperty;
-    this.props.getSongs(null, sort);
+    this.props.updateSort(sort);
+    this.props.getSongs(query, sort);
   };
 
   render() {
@@ -47,7 +48,21 @@ class Library extends Component {
     const errorMessage = !error ? null : (<div className="error message">{error}</div>);
     return (
       <div className="Library">
-        <h1>Library</h1>
+        <div className="header">
+          <h1>Library</h1>
+          <div className="search-form">
+            <input
+              defaultValue={this.props.query}
+              onKeyUp={e => {
+              const query = e.target.value;
+              if(e.keyCode === 13) {
+                const {sort} = this.props;
+                this.props.updateQuery(query);
+                this.props.getSongs(query, sort);
+              }
+            }} />
+          </div>
+        </div>
         {errorMessage}
         <div className="table-header">
           <div className="column title" onClick={() => this.sort('title')}>
@@ -69,15 +84,17 @@ class Library extends Component {
   }
 }
 
-function mapStateToProps({library: {songs, loading, error, sort}}) {
+function mapStateToProps({library: {songs, loading, error, sort, query}}) {
   return {
-    songs, loading, error, sort
+    songs, loading, error, sort, query
   };
 }
 
 function mapDispatchToProps(dispatch) {
   return {
-    getSongs: (query, sort) => dispatch(actions.getSongs(query, sort))
+    getSongs: (query, sort) => dispatch(actions.getSongs(query, sort)),
+    updateSort: (sort) => dispatch(actions.updateSort(sort)),
+    updateQuery: (query) => dispatch(actions.updateQuery(query))
   };
 }
 

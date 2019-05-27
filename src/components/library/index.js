@@ -27,7 +27,7 @@ class Library extends Component {
     this.fetchSongs(this.props.query);
     const {songs, error, loading} = this.props;
     const listItems = songs.map(song => (
-      <div key={song.id} className="row">
+      <div key={song.id} className="table-row">
         <div className="column title">{song.title}</div>
         <div className="column album">{song.album.title}</div>
         <div className="column artist">{song.album.artist}</div>
@@ -38,7 +38,6 @@ class Library extends Component {
     return (
       <div className="Library">
         {errorMessage}
-        {this.props.sort.direction}
         <div className="table">
           <div className="table-header">
             <div className="column title" onClick={() => this.sort('title')}>

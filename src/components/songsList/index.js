@@ -5,7 +5,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import actions from '../../actions';
 import './style.scss';
 
-class Library extends Component {
+class SongsList extends Component {
   componentDidMount() {
     const {sort, query} = this.props;
     this.props.getSongs(query, sort);
@@ -36,7 +36,7 @@ class Library extends Component {
     ));
     const errorMessage = !error ? null : (<div className="error message">{error}</div>);
     return (
-      <div className="Library">
+      <div className="SongsList">
         {errorMessage}
         <div className="table">
           <div className="table-header">
@@ -69,7 +69,7 @@ class Library extends Component {
   }
 }
 
-function mapStateToProps({library: {songs, error, sort}, global: {loading, query}}) {
+function mapStateToProps({songsList: {songs, error, sort}, global: {loading, query}}) {
   return {
     songs, loading, error, sort, query
   };
@@ -95,4 +95,4 @@ const SortIcon = ({sort, name}) => {
   );
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(Library);
+export default connect(mapStateToProps, mapDispatchToProps)(SongsList);

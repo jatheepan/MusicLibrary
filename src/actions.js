@@ -3,7 +3,7 @@ import library from './services/library';
 const SONGS_WILL_FETCH = 'Songs will fetch';
 const SONGS_DID_FETCH = 'Songs did fetch';
 const SONGS_FETCH_ERROR = 'Error fetch error';
-const SORT_LIBRARY = 'Sort library';
+const SORT_SONGS = 'Sort songs';
 const UPDATE_SEARCH_QUERY = 'Update search query';
 
 const getSongs = (query, sort) => dispatch => {
@@ -25,7 +25,7 @@ const getSongs = (query, sort) => dispatch => {
 
 function updateSort(sort) {
   return {
-    type: SORT_LIBRARY,
+    type: SORT_SONGS,
     payload: sort
   };
 };
@@ -47,6 +47,6 @@ export {
   SONGS_WILL_FETCH,
   SONGS_DID_FETCH,
   SONGS_FETCH_ERROR,
-  SORT_LIBRARY,
+  SORT_SONGS,
   UPDATE_SEARCH_QUERY
 };

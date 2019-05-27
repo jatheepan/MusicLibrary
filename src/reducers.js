@@ -3,11 +3,11 @@ import {
   SONGS_WILL_FETCH,
   SONGS_DID_FETCH,
   SONGS_FETCH_ERROR,
-  SORT_LIBRARY,
+  SORT_SONGS,
   UPDATE_SEARCH_QUERY
 } from './actions';
 
-function libraryReducer(initialState = {
+function songsReducer(initialState = {
   songs: [],
   sort: {property: 'title', direction: 'asc'},
   query: ''
@@ -24,7 +24,7 @@ function libraryReducer(initialState = {
       state.error = payload;
       break;
 
-    case SORT_LIBRARY:
+    case SORT_SONGS:
       state.sort = Object.assign({}, payload);
       break;
 
@@ -57,5 +57,5 @@ function globalReducer(initialState = {query: '', loading: false}, {type, payloa
 
 export default combineReducers({
   global: globalReducer,
-  library: libraryReducer
+  songsList: songsReducer
 });

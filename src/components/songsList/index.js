@@ -78,8 +78,7 @@ function mapStateToProps({songsList: {songs, error, sort}, global: {loading, que
 function mapDispatchToProps(dispatch) {
   return {
     getSongs: (query, sort) => dispatch(actions.getSongs(query, sort)),
-    updateSort: (sort) => dispatch(actions.updateSort(sort)),
-    updateQuery: (query) => dispatch(actions.updateQuery(query))
+    updateSort: (sort) => dispatch(actions.updateSort(sort))
   };
 }
 

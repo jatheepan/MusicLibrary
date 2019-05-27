@@ -10,7 +10,6 @@ import {
 function songsReducer(initialState = {
   songs: [],
   sort: {property: 'title', direction: 'asc'},
-  query: ''
 }, {type, payload}) {
   const state = {};
   switch(type) {

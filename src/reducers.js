@@ -2,10 +2,11 @@ import { combineReducers } from 'redux';
 import {
   SONGS_WILL_FETCH,
   SONGS_DID_FETCH,
-  SONGS_FETCH_ERROR
+  SONGS_FETCH_ERROR,
+  SORT_LIBRARY
 } from './actions';
 
-function libraryReducer(initialState = {songs: []}, {type, payload}) {
+function libraryReducer(initialState = {songs: [], sort: {property: 'title', direction: 'asc'}}, {type, payload}) {
   const state = {};
   switch(type) {
     case SONGS_WILL_FETCH:
@@ -21,6 +22,11 @@ function libraryReducer(initialState = {songs: []}, {type, payload}) {
       state.loading = false;
       state.error = payload;
       break;
+
+    case SORT_LIBRARY:
+      state.sort = payload;
+      break;
+
     default:
   }
 

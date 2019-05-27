@@ -20,34 +20,18 @@ const SortIcon = ({sort, name}) => {
 };
 
 class Library extends Component {
-  state = {
-    sort: {
-      property: 'title',
-      direction: 'asc'
-    }
-  };
-
   componentDidMount() {
-    this.loadSongs();
-  }
-
-  loadSongs() {
-    const {sort} = this.state;
+    const {sort} = this.props;
     this.props.getSongs(null, sort);
   }
 
-  sort = (newProperty) => {
-    let {sort: {property, direction}} = this.state;
-    if(newProperty === property) {
-      direction = direction === 'asc' ? 'desc': 'asc';
+  sort = newProperty => {
+    let {sort} = this.props;
+    if(newProperty === sort.property) {
+      sort.direction = sort.direction === 'asc' ? 'desc': 'asc';
     }
-    property = newProperty;
-    this.setState({
-      sort: {
-        property,
-        direction
-      }
-    }, () => this.loadSongs());
+    sort.property = newProperty;
+    this.props.getSongs(null, sort);
   };
 
   render() {
@@ -67,16 +51,16 @@ class Library extends Component {
         {errorMessage}
         <div className="table-header">
           <div className="column title" onClick={() => this.sort('title')}>
-            Title <SortIcon sort={this.state.sort} name="title" />
+            Title <SortIcon sort={this.props.sort} name="title" />
           </div>
           <div className="column album" onClick={() => this.sort('album')}>
-            Album <SortIcon sort={this.state.sort} name="album" />
+            Album <SortIcon sort={this.props.sort} name="album" />
           </div>
           <div className="column artist" onClick={() => this.sort('artist')}>
-            Artist <SortIcon sort={this.state.sort} name="artist" />
+            Artist <SortIcon sort={this.props.sort} name="artist" />
           </div>
           <div className="column duration" onClick={() => this.sort('duration')}>
-            Duration <SortIcon sort={this.state.sort} name="duration" />
+            Duration <SortIcon sort={this.props.sort} name="duration" />
           </div>
         </div>
         {listItems}
@@ -85,9 +69,9 @@ class Library extends Component {
   }
 }
 
-function mapStateToProps({library: {songs, loading, error}}) {
+function mapStateToProps({library: {songs, loading, error, sort}}) {
   return {
-    songs, loading, error
+    songs, loading, error, sort
   };
 }
 

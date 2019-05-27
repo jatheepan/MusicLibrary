@@ -16,7 +16,7 @@ const SortIcon = ({sort, name}) => {
     return null;
   }
   return (
-    <FontAwesomeIcon icon={icon} />
+    <FontAwesomeIcon icon={icon} className="sort-icon" />
   );
 };
 
@@ -37,7 +37,7 @@ class Library extends Component {
   };
 
   render() {
-    const {songs, error} = this.props;
+    const {songs, error, loading} = this.props;
     const listItems = songs.map(song => (
       <div key={song.id} className="row">
         <div className="column title">{song.title}</div>
@@ -50,8 +50,8 @@ class Library extends Component {
     return (
       <div className="Library">
         <div className="header">
-          <h1>Library</h1>
-          <LoadSpinner loading={this.props.loading} />
+          <h1>Music Library</h1>
+          <LoadSpinner loading={loading} />
           <div className="search-form">
             <div className="search-field">
               <input
@@ -86,6 +86,13 @@ class Library extends Component {
             </div>
           </div>
           <div className="table-body">
+            {!songs.length && !loading ? (
+              this.props.query.length ? (
+                <div className="no-data">No songs for search query</div>
+              ) : (
+                <div className="no-data">No songs for found</div>
+              )
+            ) : null}
             {listItems}
           </div>
         </div>

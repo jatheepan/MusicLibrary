@@ -1,3 +1,5 @@
+@import '../../commons.scss';
+
 $column-padding: 1%;
 $header-height: 4em;
 
@@ -19,11 +21,16 @@ $header-height: 4em;
   .table-body {
     flex: 1;
     overflow-y: scroll;
+    background-color: rgba(0,0,0,0.1);
   }
 
   .column {
     padding: 0.8em $column-padding;
     display: inline-block;
+  }
+
+  .sort-icon {
+    color: #930bc3;
   }
 
   .row {
@@ -53,6 +60,7 @@ $header-height: 4em;
     width: 10% - ($column-padding * 2);
   }
   .message {
+    margin: 0 1em;
     padding: 0.6em;
     text-align: center;
     border: 1px solid #000;
@@ -63,6 +71,13 @@ $header-height: 4em;
     color: #d31414;
     border-color: #d31414;
   }
+  .no-data {
+    font-weight: bold;
+    font-size: 1.4em;
+    text-align: center;
+    padding: 3em 1em;
+    color: rgba(255,255,255,0.4);
+  }
 
   .header {
     position: fixed;
@@ -71,17 +86,18 @@ $header-height: 4em;
     top: 0;
     padding: 0 1em;
     height: $header-height;
+    background-color: #081520;
     display: flex;
     align-items: center;
     justify-content: flex-start;
     h1 {
-      color: #ff0090;
+      @include gradient-background;
       margin: 0;
       padding: 0;
       text-transform: uppercase;
     }
     .spinner {
-      padding: 1em;
+      padding: 0 0.5em;
       opacity: 0.4;
     }
     .search-form {

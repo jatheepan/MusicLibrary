@@ -8,7 +8,7 @@ function getAlbums() {
   return db.getAlbums();
 }
 
-export {
+export default {
   getSongs,
   getAlbums
 };

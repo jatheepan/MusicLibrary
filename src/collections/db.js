@@ -1,6 +1,12 @@
 import albumsCollection from './albums.json';
 import songsCollection from './songs.json';
 
+function delayedResolve(payload) {
+  return new Promise(resolve => {
+    setTimeout(() => resolve(payload), 400);
+  });
+}
+
 function getAlbums() {
   return Promise.resolve(albumsCollection);
 }
@@ -14,7 +20,7 @@ function getSongs(sort = {property: 'title', direction: 'asc'}) {
     return song;
   });
   sortList(songs, sort);
-  return Promise.resolve(songs);
+  return delayedResolve(songs);
 }
 
 function sortList(list, sort) {

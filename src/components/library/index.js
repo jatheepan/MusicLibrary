@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { getSongs } from '../../services/library';
+import actions from '../../actions';
 import './style.scss';
 
 const SortIcon = ({sort, name}) => {
@@ -18,14 +19,12 @@ const SortIcon = ({sort, name}) => {
   );
 };
 
-export default class Library extends Component {
+class Library extends Component {
   state = {
-    songs: [],
     sort: {
       property: 'title',
       direction: 'asc'
-    },
-    error: null
+    }
   };
 
   componentDidMount() {
@@ -34,9 +33,7 @@ export default class Library extends Component {
 
   loadSongs() {
     const {sort} = this.state;
-    getSongs(null, sort)
-      .then(songs => this.setState({songs}))
-      .catch(error => this.setState({error}));
+    this.props.getSongs(null, sort);
   }
 
   sort = (newProperty) => {
@@ -54,7 +51,7 @@ export default class Library extends Component {
   };
 
   render() {
-    const {songs, error} = this.state;
+    const {songs, error} = this.props;
     const listItems = songs.map(song => (
       <div key={song.id} className="row">
         <div className="column title">{song.title}</div>
@@ -87,3 +84,17 @@ export default class Library extends Component {
     );
   }
 }
+
+function mapStateToProps({library: {songs, loading, error}}) {
+  return {
+    songs, loading, error
+  };
+}
+
+function mapDispatchToProps(dispatch) {
+  return {
+    getSongs: (query, sort) => dispatch(actions.getSongs(query, sort))
+  };
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Library);

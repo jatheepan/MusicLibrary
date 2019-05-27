@@ -14,10 +14,6 @@ function libraryReducer(initialState = {
 }, {type, payload}) {
   const state = {};
   switch(type) {
-    case SONGS_WILL_FETCH:
-      state.loading = true;
-      break;
-
     case SONGS_DID_FETCH:
       state.loading = false;
       state.songs = payload;
@@ -29,11 +25,7 @@ function libraryReducer(initialState = {
       break;
 
     case SORT_LIBRARY:
-      state.sort = payload;
-      break;
-
-    case UPDATE_SEARCH_QUERY:
-      state.query = payload;
+      state.sort = Object.assign({}, payload);
       break;
 
     default:
@@ -42,6 +34,28 @@ function libraryReducer(initialState = {
   return Object.assign({}, initialState, state);
 }
 
+function globalReducer(initialState = {query: '', loading: false}, {type, payload}) {
+  const state = {};
+  switch(type) {
+    case SONGS_WILL_FETCH:
+      state.loading = true;
+      break;
+
+    case UPDATE_SEARCH_QUERY:
+      state.query = payload;
+      break;
+
+    case SONGS_DID_FETCH:
+    case SONGS_FETCH_ERROR:
+      state.loading = false;
+      break;
+
+    default:
+  }
+  return Object.assign({}, initialState, state);
+}
+
 export default combineReducers({
+  global: globalReducer,
   library: libraryReducer
 });

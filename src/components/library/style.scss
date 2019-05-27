@@ -1,7 +1,6 @@
 @import '../../commons.scss';
 
 $column-padding: 1%;
-$header-height: 4em;
 
 .Library {
   padding-top: $header-height;
@@ -78,58 +77,4 @@ $header-height: 4em;
     padding: 3em 1em;
     color: rgba(255,255,255,0.4);
   }
-
-  .header {
-    position: fixed;
-    left: 0;
-    right: 0;
-    top: 0;
-    padding: 0 1em;
-    height: $header-height;
-    background-color: #081520;
-    display: flex;
-    align-items: center;
-    justify-content: flex-start;
-    h1 {
-      @include gradient-background;
-      margin: 0;
-      padding: 0;
-      text-transform: uppercase;
-    }
-    .spinner {
-      padding: 0 0.5em;
-      opacity: 0.4;
-    }
-    .search-form {
-      margin-left: auto;
-    }
-    .search-field {
-      background-color: rgba(0,0,0,0.3);
-      padding: 0 0.3em 0 1em;
-      border-radius: 2em;
-      display: inline-block;
-      input {
-        padding: 0.6em 0;
-        outline: none;
-        background-color: transparent;
-        font-size: 1em;
-        border: none;
-        width: 14em;
-        color: #fff;
-      }
-      button {
-        cursor: pointer;
-        padding: 0.6em;
-        font-size: 1em;
-        background-color: transparent;
-        border: none;
-        outline: none;
-        color: rgba(255, 255, 255, 0.5);
-        &:hover {
-          color: #fff;
-        }
-      }
-    }
-  }
-
 }

@@ -1,24 +1,9 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import memoize from 'memoize-one';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import LoadSpinner from '../LoadSpinner';
 import actions from '../../actions';
 import './style.scss';
-
-const SortIcon = ({sort, name}) => {
-  if(sort.property !== name) return null;
-  let icon = null;
-  if(sort.direction === 'asc') {
-    icon = 'caret-up';
-  } else if(sort.direction === 'desc') {
-    icon = 'caret-down';
-  } else {
-    return null;
-  }
-  return (
-    <FontAwesomeIcon icon={icon} className="sort-icon" />
-  );
-};
 
 class Library extends Component {
   componentDidMount() {
@@ -27,16 +12,19 @@ class Library extends Component {
   }
 
   sort = newProperty => {
-    let {sort, query} = this.props;
+    let {sort} = this.props;
     if(newProperty === sort.property) {
       sort.direction = sort.direction === 'asc' ? 'desc': 'asc';
     }
     sort.property = newProperty;
     this.props.updateSort(sort);
-    this.props.getSongs(query, sort);
+    this.fetchSongs();
   };
 
+  fetchSongs = memoize(query => this.props.getSongs(query, this.props.sort));
+
   render() {
+    this.fetchSongs(this.props.query);
     const {songs, error, loading} = this.props;
     const listItems = songs.map(song => (
       <div key={song.id} className="row">
@@ -49,27 +37,8 @@ class Library extends Component {
     const errorMessage = !error ? null : (<div className="error message">{error}</div>);
     return (
       <div className="Library">
-        <div className="header">
-          <h1>Music Library</h1>
-          <LoadSpinner loading={loading} />
-          <div className="search-form">
-            <div className="search-field">
-              <input
-                defaultValue={this.props.query}
-                placeholder="Search Song, Album or Artist"
-                onKeyUp={e => {
-                const query = e.target.value;
-                if(e.keyCode === 13) {
-                  const {sort} = this.props;
-                  this.props.updateQuery(query);
-                  this.props.getSongs(query, sort);
-                }
-              }} />
-              <button><FontAwesomeIcon icon="search" /></button>
-            </div>
-          </div>
-        </div>
         {errorMessage}
+        {this.props.sort.direction}
         <div className="table">
           <div className="table-header">
             <div className="column title" onClick={() => this.sort('title')}>
@@ -101,7 +70,7 @@ class Library extends Component {
   }
 }
 
-function mapStateToProps({library: {songs, loading, error, sort, query}}) {
+function mapStateToProps({library: {songs, error, sort}, global: {loading, query}}) {
   return {
     songs, loading, error, sort, query
   };
@@ -114,5 +83,17 @@ function mapDispatchToProps(dispatch) {
     updateQuery: (query) => dispatch(actions.updateQuery(query))
   };
 }
+
+const SortIcon = ({sort, name}) => {
+  if(sort.property !== name) return null;
+  const iconName = {
+    asc: 'caret-up',
+    desc: 'caret-down'
+  };
+  let icon = iconName[sort.direction] || null;
+  return (
+    <FontAwesomeIcon icon={icon} className="sort-icon" />
+  );
+};
 
 export default connect(mapStateToProps, mapDispatchToProps)(Library);

@@ -1,9 +1,21 @@
 @import './commons.scss';
 
 .App {
+  .main {
+    height: calc(100vh - #{$header-height});
+    padding-top: $header-height;
+    display: flex;
+  }
+  .content {
+    flex: 1;
+    background-color: lighten($background-color, 3);
+  }
+
+  .Player {
+    width: $player-width;
+  }
 }
 .spinner {
-  color: #fff;
   font-size: 2em;
   animation-name: spin;
   animation-duration: 400ms;

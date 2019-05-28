@@ -1,9 +1,8 @@
 @import '../../commons.scss';
 
-$column-padding: 1%;
+$column-padding: 1.5%;
 
 .SongsList {
-  padding-top: $header-height;
   .table {
     display: flex;
     flex-direction: column;
@@ -13,7 +12,6 @@ $column-padding: 1%;
     .column {
       cursor: pointer;
       font-weight: bold;
-      color: #fff;
     }
   }
 
@@ -41,12 +39,12 @@ $column-padding: 1%;
     }
 
     &:hover {
-      background-color: rgba(0,0,0,0.1);
+      background-color: darken($background-color, 1);
     }
   }
 
   .title {
-    width: 50% - ($column-padding * 2);
+    width: 45% - ($column-padding * 2);
   }
   .album {
     width: 20% - ($column-padding * 2);
@@ -55,7 +53,7 @@ $column-padding: 1%;
     width: 20% - ($column-padding * 2);
   }
   .duration {
-    width: 10% - ($column-padding * 2);
+    width: 15% - ($column-padding * 2);
   }
   .message {
     margin: 0 1em;

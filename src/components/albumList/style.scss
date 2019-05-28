@@ -3,9 +3,6 @@
 $column-padding: 1%;
 
 .AlbumList {
-  min-width: 60em;
-  padding-top: $header-height;
-
   .albums-body {
     display: flex;
     flex-direction: row;
@@ -15,7 +12,7 @@ $column-padding: 1%;
 
   .album {
     padding: 1em;
-    width: calc((100vw / 2) - 2em);
+    width: calc((calc(100vw - #{$player-width}) / 1) - 2em);
 
     .title {
       margin-top: 0.3em;
@@ -31,17 +28,17 @@ $column-padding: 1%;
   }
   @media (min-width: 768px) {
     .album {
-      width: calc((100vw / 3) - 2em);
+      width: calc((calc(100vw - #{$player-width}) / 2) - 2em);
     }
   }
   @media (min-width: 992px) {
     .album {
-      width: calc((100vw / 4) - 2em);
+      width: calc((calc(100vw - #{$player-width}) / 3) - 2em);
     }
   }
   @media (min-width: 1200px) {
     .album {
-      width: calc((100vw / 4) - 2em);
+      width: calc(((calc(100vw - #{$player-width}) / 4) - 2em);
     }
   }
 

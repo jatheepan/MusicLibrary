@@ -15,10 +15,12 @@ function App(props) {
   return (
     <div className="App">
       <AppHeader />
-      <div className="rightside">
-        <div>
-          {activePage === 'songs' ? <SongsList /> : null}
-          {activePage === 'albums' ? <AlbumList /> : null}
+      <div className="main">
+        <div className="content">
+          <div>
+            {activePage === 'songs' ? <SongsList /> : null}
+            {activePage === 'albums' ? <AlbumList /> : null}
+          </div>
         </div>
         <Player />
       </div>

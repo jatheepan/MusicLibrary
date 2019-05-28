@@ -1,5 +1,6 @@
 $header-height: 5em;
-$background-color: #171c20;
+$background-color: lighten(#eaf1f6, 3);
+$player-width: 25em;
 
 @keyframes spin {
   from {
@@ -27,13 +28,13 @@ $background-color: #171c20;
 }
 
 @mixin gradient-background {
-  background: -moz-linear-gradient(-45deg,  #ff0090 0%, #161d8d 100%);
-  background: -webkit-linear-gradient(-45deg,  #ff0090 0%, #161d8d 100%);
-  background: linear-gradient(135deg,  #ff0090 0%, #161d8d 100%);
+  background: -moz-linear-gradient(-45deg,  #a80d64 0%, #d631ff 100%);
+  background: -webkit-linear-gradient(-45deg,  #a80d64 0%, #d631ff 100%);
+  background: linear-gradient(135deg,  #a80d64 0%, #d631ff 100%);
 }
 
 @mixin gradient-text-background {
-  background: -webkit-linear-gradient(#ff0090, #161d8d);
+  background: -webkit-linear-gradient(#a80d64, #d631ff);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   color: #ff0090;

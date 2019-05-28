@@ -9,6 +9,7 @@
     margin-right: 1em;
 
     &.active {
+      color: #fff;
       @include gradient-background;
     }
   }

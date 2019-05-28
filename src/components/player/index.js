@@ -1,10 +1,11 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import actions from '../../actions';
+import './style.scss';
 
 function Player() {
   return (
-    <div>Player</div>
+    <div className="Player">Player</div>
   );
 }
 

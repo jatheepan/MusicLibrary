@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import actions from '../actions';
 import LoadSpinner from './LoadSpinner';
+import Navigation from './Navigation';
 import './AppHeader.scss';
 
 function AppHeader(props) {
@@ -11,6 +12,7 @@ function AppHeader(props) {
     <div className="AppHeader">
       <h1>Music Library</h1>
       <LoadSpinner loading={loading} />
+      <Navigation />
       <div className="search-form">
         <div className="search-field">
           <input

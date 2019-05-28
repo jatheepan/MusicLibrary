@@ -7,8 +7,8 @@ import {
   UPDATE_SEARCH_QUERY,
   ALBUMS_WILL_FETCH,
   ALBUMS_DID_FETCH,
-  ALBUMS_FETCH_ERROR
-
+  ALBUMS_FETCH_ERROR,
+  PAGE_CHANGE
 } from './actions';
 
 function songsReducer(initialState = {
@@ -52,7 +52,7 @@ function albumReducer(initialState = {albums: []}, {type, payload}) {
   return Object.assign({}, initialState, state);
 }
 
-function globalReducer(initialState = {query: '', loading: false}, {type, payload}) {
+function globalReducer(initialState = {query: '', loading: false, activePage: 'songs'}, {type, payload}) {
   const state = {};
   switch(type) {
     case SONGS_WILL_FETCH:
@@ -71,6 +71,9 @@ function globalReducer(initialState = {query: '', loading: false}, {type, payloa
       state.loading = false;
       break;
 
+    case PAGE_CHANGE:
+      state.activePage = payload;
+      break;
     default:
   }
   return Object.assign({}, initialState, state);

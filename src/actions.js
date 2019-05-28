@@ -10,6 +10,8 @@ const ALBUMS_WILL_FETCH = 'Albums will fetch';
 const ALBUMS_DID_FETCH = 'Albums did fetch';
 const ALBUMS_FETCH_ERROR = 'Albums fetch error';
 
+const PAGE_CHANGE = 'Page navigation';
+
 const getSongs = (query, sort) => dispatch => {
   dispatch({
     type: SONGS_WILL_FETCH,
@@ -58,11 +60,17 @@ const getAlbums = (query) => dispatch => {
     }));
 }
 
+const pageChange = activePage => ({
+  type: PAGE_CHANGE,
+  payload: activePage
+});
+
 export default {
   getSongs,
   updateSort,
   updateQuery,
-  getAlbums
+  getAlbums,
+  pageChange
 };
 
 export {
@@ -73,5 +81,6 @@ export {
   UPDATE_SEARCH_QUERY,
   ALBUMS_WILL_FETCH,
   ALBUMS_DID_FETCH,
-  ALBUMS_FETCH_ERROR
+  ALBUMS_FETCH_ERROR,
+  PAGE_CHANGE
 };

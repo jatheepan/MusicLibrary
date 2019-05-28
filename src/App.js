@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import SongsList from './components/songsList';
 import AlbumList from './components/albumList';
 import AppHeader from './components/AppHeader';
+import Player from './components/player';
 import { library } from '@fortawesome/fontawesome-svg-core';
 import { faCaretUp, faCaretDown, faSearch, faCompactDisc } from '@fortawesome/free-solid-svg-icons';
 import './App.scss';
@@ -14,8 +15,13 @@ function App(props) {
   return (
     <div className="App">
       <AppHeader />
-      {activePage === 'songs' ? <SongsList /> : null}
-      {activePage === 'albums' ? <AlbumList /> : null}
+      <div className="rightside">
+        <div>
+          {activePage === 'songs' ? <SongsList /> : null}
+          {activePage === 'albums' ? <AlbumList /> : null}
+        </div>
+        <Player />
+      </div>
     </div>
   );
 }

@@ -6,15 +6,18 @@
   top: 0;
   padding: 0 1em;
   height: $header-height;
-  background-color: #081520;
+  background-color: $background-color;
   display: flex;
   align-items: center;
   justify-content: flex-start;
+
   h1 {
-    @include gradient-background;
+    @include gradient-text-background;
     margin: 0;
     padding: 0;
-    text-transform: uppercase;
+    font-family: 'Lobster', cursive;
+    font-weight: normal;
+    font-size: 3em;
   }
   .spinner {
     padding: 0 0.5em;

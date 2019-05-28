@@ -3,12 +3,14 @@
 $column-padding: 1.5%;
 
 .SongsList {
+  position: relative;
   .table {
     display: flex;
     flex-direction: column;
     height: calc(100vh - #{$header-height});
   }
   .table-header {
+    border-bottom: 3px solid darken($background-color, 3);
     .column {
       cursor: pointer;
       font-weight: bold;
@@ -36,10 +38,11 @@ $column-padding: 1.5%;
       text-overflow: ellipsis;
       white-space: nowrap;
       overflow: hidden;
+      border-bottom: 1px solid darken($background-color, 3);
     }
 
     &:hover {
-      background-color: darken($background-color, 1);
+      background-color: darken($background-color, 0.5);
     }
   }
 
@@ -71,7 +74,8 @@ $column-padding: 1.5%;
     font-weight: bold;
     font-size: 1.4em;
     text-align: center;
-    padding: 3em 1em;
-    color: rgba(255,255,255,0.4);
+    width: 100%;
+    position: absolute;
+    top: 4em;
   }
 }

@@ -5,10 +5,10 @@ import AlbumList from './components/albumList';
 import AppHeader from './components/AppHeader';
 import Player from './components/player';
 import { library } from '@fortawesome/fontawesome-svg-core';
-import { faCaretUp, faCaretDown, faSearch, faCompactDisc } from '@fortawesome/free-solid-svg-icons';
+import { faCaretUp, faCaretDown, faSearch, faCompactDisc, faMusic } from '@fortawesome/free-solid-svg-icons';
 import './App.scss';
 
-library.add([faCaretUp, faCaretDown, faSearch, faCompactDisc]);
+library.add([faCaretUp, faCaretDown, faSearch, faCompactDisc, faMusic]);
 
 function App(props) {
   const {activePage} = props;

@@ -3,6 +3,8 @@
 $column-padding: 1%;
 
 .AlbumList {
+  position: relative;
+
   .albums-body {
     display: flex;
     flex-direction: row;
@@ -58,7 +60,8 @@ $column-padding: 1%;
     font-weight: bold;
     font-size: 1.4em;
     text-align: center;
-    padding: 3em 1em;
-    color: rgba(255,255,255,0.4);
+    width: 100%;
+    position: absolute;
+    top: 4em;
   }
 }

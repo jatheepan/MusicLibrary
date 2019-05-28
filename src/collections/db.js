@@ -12,7 +12,14 @@ function delayedResolve(payload) {
 }
 
 function getAlbums(query = '') {
-  return delayedResolve(filterList(albumsCollection, query));
+  const songs = songsCollection;
+  let albums = filterList(albumsCollection, query);
+  albums = albums.map(album => {
+    album.songs = songs.filter(({album_id}) => album_id === album.id);
+    return album;
+  });
+
+  return delayedResolve(albums);
 }
 
 function getSongs(query = '', sort = {property: 'title', direction: 'asc'}) {

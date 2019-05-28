@@ -79,8 +79,22 @@ function globalReducer(initialState = {query: '', loading: false, activePage: 's
   return Object.assign({}, initialState, state);
 }
 
+function playListReducer(initialState = {songs: [], currentSong: null}, {type, payload}) {
+  const state = {};
+  switch(type) {
+    case ALBUMS_DID_FETCH:
+      state.songs = payload[0].songs;
+      state.currentSong = state.songs[0];
+      break;
+    default:
+  }
+
+  return Object.assign({}, initialState, state);
+}
+
 export default combineReducers({
   global: globalReducer,
   songsList: songsReducer,
-  albumList: albumReducer
+  albumList: albumReducer,
+  playList: playListReducer
 });

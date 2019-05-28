@@ -16,7 +16,7 @@ class AlbumList extends Component {
     this.fetchAlbums(this.props.query);
     const {albums, error, loading} = this.props;
     const listItems = albums.map(album => (
-      <div className="album">
+      <div className="album" key={album.id}>
         <div className="thumbnail"><img src={album.thumbnail} alt={album.title} /></div>
         <div className="title">{album.title}</div>
       </div>

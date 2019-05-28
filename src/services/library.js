@@ -4,8 +4,8 @@ function getSongs(query, sort) {
   return db.getSongs(query, sort);
 }
 
-function getAlbums() {
-  return db.getAlbums();
+function getAlbums(query) {
+  return db.getAlbums(query);
 }
 
 export default {

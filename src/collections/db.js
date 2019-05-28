@@ -11,8 +11,8 @@ function delayedResolve(payload) {
   });
 }
 
-function getAlbums() {
-  return Promise.resolve(albumsCollection);
+function getAlbums(query = '') {
+  return delayedResolve(filterList(albumsCollection, query));
 }
 
 function getSongs(query = '', sort = {property: 'title', direction: 'asc'}) {
@@ -33,7 +33,15 @@ function filterList(list, query) {
   if(query.length < 1) return list;
   return list.filter(item => {
     const pattern = new RegExp(query, 'gi');
-    return pattern.test(item.title) || pattern.test(item.album.title) || pattern.test(item.album.artist);
+    if(item.title && pattern.test(item.title)) {
+      return true;
+    } else if(item.album && item.album.title && pattern.test(item.album.title)) {
+      return true;
+    } else if(item.album && item.album.artist && pattern.test(item.album.artist)) {
+      return true;
+    } else {
+      return false;
+    }
   });
 }
 

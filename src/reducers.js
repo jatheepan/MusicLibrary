@@ -4,7 +4,11 @@ import {
   SONGS_DID_FETCH,
   SONGS_FETCH_ERROR,
   SORT_SONGS,
-  UPDATE_SEARCH_QUERY
+  UPDATE_SEARCH_QUERY,
+  ALBUMS_WILL_FETCH,
+  ALBUMS_DID_FETCH,
+  ALBUMS_FETCH_ERROR
+
 } from './actions';
 
 function songsReducer(initialState = {
@@ -31,10 +35,28 @@ function songsReducer(initialState = {
   return Object.assign({}, initialState, state);
 }
 
+function albumReducer(initialState = {albums: []}, {type, payload}) {
+  const state = {};
+  switch(type) {
+    case ALBUMS_DID_FETCH:
+      state.albums = payload;
+      break;
+
+    case ALBUMS_FETCH_ERROR:
+      state.error = payload;
+      break;
+
+    default:
+  }
+
+  return Object.assign({}, initialState, state);
+}
+
 function globalReducer(initialState = {query: '', loading: false}, {type, payload}) {
   const state = {};
   switch(type) {
     case SONGS_WILL_FETCH:
+    case ALBUMS_WILL_FETCH:
       state.loading = true;
       break;
 
@@ -44,6 +66,8 @@ function globalReducer(initialState = {query: '', loading: false}, {type, payloa
 
     case SONGS_DID_FETCH:
     case SONGS_FETCH_ERROR:
+    case ALBUMS_DID_FETCH:
+    case ALBUMS_FETCH_ERROR:
       state.loading = false;
       break;
 
@@ -54,5 +78,6 @@ function globalReducer(initialState = {query: '', loading: false}, {type, payloa
 
 export default combineReducers({
   global: globalReducer,
-  songsList: songsReducer
+  songsList: songsReducer,
+  albumList: albumReducer
 });

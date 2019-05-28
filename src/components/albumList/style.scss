@@ -1,0 +1,68 @@
+@import '../../commons.scss';
+
+$column-padding: 1%;
+
+.AlbumList {
+  min-width: 60em;
+  padding-top: $header-height;
+
+  .albums-body {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    overflow-y: scroll;
+    background-color: rgba(0,0,0,0.1);
+  }
+
+  .album {
+    padding: 1em;
+    width: calc((100vw / 2) - 2em);
+
+    .title {
+      margin-top: 0.3em;
+      text-align: center;
+    }
+    img {
+      border-radius: 0.5em;
+      margin: auto;
+      display: block;
+      max-width: 100%;
+      height: auto;
+    }
+  }
+  @media (min-width: 768px) {
+    .album {
+      width: calc((100vw / 3) - 2em);
+    }
+  }
+  @media (min-width: 992px) {
+    .album {
+      width: calc((100vw / 4) - 2em);
+    }
+  }
+  @media (min-width: 1200px) {
+    .album {
+      width: calc((100vw / 4) - 2em);
+    }
+  }
+
+  .message {
+    margin: 0 1em;
+    padding: 0.6em;
+    text-align: center;
+    border: 1px solid #000;
+    border-radius: 3px;
+    margin-bottom: 0.7em;
+  }
+  .error {
+    color: #d31414;
+    border-color: #d31414;
+  }
+  .no-data {
+    font-weight: bold;
+    font-size: 1.4em;
+    text-align: center;
+    padding: 3em 1em;
+    color: rgba(255,255,255,0.4);
+  }
+}

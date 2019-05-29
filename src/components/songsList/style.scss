@@ -31,18 +31,34 @@ $column-padding: 1.5%;
   }
 
   .table-row {
+    position: relative;
+    transition: background-color 0.2s;
     .column {
       vertical-align: middle;
       padding: 1em $column-padding;
       text-overflow: ellipsis;
       white-space: nowrap;
       overflow: hidden;
-      border-bottom: 1px solid darken($background-color, 3);
+      border-bottom: 1px solid darken($background-color, 4);
+    }
+
+    .controls {
+      opacity: 0;
+      cursor: pointer;
+      position: absolute;
+      top: 15px;
+      right: 25px;
+      transition: opacity 0.2s;
     }
 
     &:hover {
       background-color: darken($background-color, 2);
+
+      .controls {
+        opacity: 1;
+      }
     }
+
   }
 
   .title {

@@ -32,6 +32,9 @@ class SongsList extends Component {
         <div className="column album">{song.album.title}</div>
         <div className="column artist">{song.album.artist}</div>
         <div className="column duration">{song.duration.toFixed(2)}</div>
+        <div className="controls">
+          <FontAwesomeIcon icon="plus" className="plus" onClick={() => this.props.addToPlaylist(song)} />
+        </div>
       </div>
     ));
     const errorMessage = !error ? null : (<div className="error message">{error}</div>);
@@ -78,7 +81,8 @@ function mapStateToProps({songsList: {songs, error, sort}, global: {loading, que
 function mapDispatchToProps(dispatch) {
   return {
     getSongs: (query, sort) => dispatch(actions.getSongs(query, sort)),
-    updateSort: (sort) => dispatch(actions.updateSort(sort))
+    updateSort: (sort) => dispatch(actions.updateSort(sort)),
+    addToPlaylist: (song) => dispatch(actions.addToPlaylist(song))
   };
 }
 

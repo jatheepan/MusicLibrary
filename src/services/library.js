@@ -11,6 +11,7 @@ function getAlbums(query) {
 function getPlaylist() {
   return db.getPlaylist();
 }
+
 export default {
   getSongs,
   getAlbums,

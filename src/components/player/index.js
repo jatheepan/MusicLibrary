@@ -27,9 +27,9 @@ class Player extends Component {
 }
 
 function Playlist({songs, onClick}) {
-  const items = songs.map(item => {
+  const items = songs.map((item, index) => {
     return (
-      <div key={item.id} className="row" onClick={() => onClick(item)}>
+      <div key={index} className="row" onClick={() => onClick(item)}>
         <div className="column title">{item.song.title}</div>
         <div className="column duration">{item.song.duration.toFixed(2)}</div>
       </div>

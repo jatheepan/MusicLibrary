@@ -11,7 +11,8 @@ import {
   PLAYLIST_WILL_FETCH,
   PLAYLIST_DID_FETCH,
   PLAYLIST_FETCH_ERROR,
-  PLAYLIST_CHANGE_CURRENT_SONG
+  PLAYLIST_CHANGE_CURRENT_SONG,
+  ADD_TO_PLAYLIST
 } from './actions';
 
 function songsReducer(initialState = {
@@ -97,6 +98,15 @@ function playListReducer(initialState = {songs: [], currentSong: null, loading: 
     case PLAYLIST_CHANGE_CURRENT_SONG:
       state.currentSong = payload;
       break;
+
+    case ADD_TO_PLAYLIST:
+      state.songs = [].concat(initialState.songs);
+      state.songs.push({
+        song_id: payload.id,
+        song: payload
+      });
+      break;
+
     default:
   }
   return Object.assign({}, initialState, state);

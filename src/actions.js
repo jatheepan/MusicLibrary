@@ -1,19 +1,20 @@
 import library from './services/library';
 
-const SONGS_WILL_FETCH = 'Songs will fetch';
-const SONGS_DID_FETCH = 'Songs did fetch';
-const SONGS_FETCH_ERROR = 'Songs fetch error';
-const SORT_SONGS = 'Sort songs';
-const UPDATE_SEARCH_QUERY = 'Update search query';
+const SONGS_WILL_FETCH = 'SONGS_WILL_FETCH';
+const SONGS_DID_FETCH = 'SONGS_DID_FETCH';
+const SONGS_FETCH_ERROR = 'SONGS_FETCH_ERROR';
+const SORT_SONGS = 'SORT_SONGS';
+const UPDATE_SEARCH_QUERY = 'UPDATE_SEARCH_QUERY';
+const ADD_TO_PLAYLIST = 'ADD_TO_PLAYLIST';
 
-const ALBUMS_WILL_FETCH = 'Albums will fetch';
-const ALBUMS_DID_FETCH = 'Albums did fetch';
-const ALBUMS_FETCH_ERROR = 'Albums fetch error';
+const ALBUMS_WILL_FETCH = 'ALBUMS_WILL_FETCH';
+const ALBUMS_DID_FETCH = 'ALBUMS_DID_FETCH';
+const ALBUMS_FETCH_ERROR = 'ALBUMS_FETCH_ERROR';
 
-const PLAYLIST_WILL_FETCH = 'Playlist will fetch';
-const PLAYLIST_DID_FETCH = 'Playlist did fetch';
-const PLAYLIST_FETCH_ERROR = 'Playlist fetch error';
-const PLAYLIST_CHANGE_CURRENT_SONG = 'Playlist change current song';
+const PLAYLIST_WILL_FETCH = 'PLAYLIST_WILL_FETCH';
+const PLAYLIST_DID_FETCH = 'PLAYLIST_DID_FETCH';
+const PLAYLIST_FETCH_ERROR = 'PLAYLIST_FETCH_ERROR';
+const PLAYLIST_CHANGE_CURRENT_SONG = 'PLAYLIST_CHANGE_CURRENT_SONG';
 
 const getSongs = (query, sort) => dispatch => {
   dispatch({
@@ -87,13 +88,21 @@ const changeCurrentSong = item => dispatch => {
   });
 };
 
+const addToPlaylist = song => dispatch => {
+  dispatch({
+    type: ADD_TO_PLAYLIST,
+    payload: song
+  });
+};
+
 export default {
   getSongs,
   updateSort,
   updateQuery,
   getAlbums,
   getPlaylist,
-  changeCurrentSong
+  changeCurrentSong,
+  addToPlaylist
 };
 
 export {
@@ -101,6 +110,7 @@ export {
   SONGS_DID_FETCH,
   SONGS_FETCH_ERROR,
   SORT_SONGS,
+  ADD_TO_PLAYLIST,
   UPDATE_SEARCH_QUERY,
   ALBUMS_WILL_FETCH,
   ALBUMS_DID_FETCH,

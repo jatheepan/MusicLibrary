@@ -2,245 +2,294 @@
   "id": 1,
   "title": "Wanna Be Startin' Somethin'",
   "duration": 4.20,
-  "album_id": 1
+  "album_id": 1,
+  "file": "sample1.mp3"
 }, {
   "id": 2,
   "title": "Beat It",
   "duration": 3.00,
-  "album_id": 1
+  "album_id": 1,
+  "file": "sample2.mp3"
 }, {
   "id": 3,
   "title": "Billie Jean",
   "duration": 2.00,
-  "album_id": 1
+  "album_id": 1,
+  "file": "sample3.mp3"
 }, {
   "id": 4,
   "title": "The Girl Is Mine 2008",
   "duration": 1.00,
-  "album_id": 1
+  "album_id": 1,
+  "file": "sample4.mp3"
 }, {
   "id": 5,
   "title": "P.Y.T. (Pretty Young Thing) 2008",
   "duration": 2.01,
-  "album_id": 1
+  "album_id": 1,
+  "file": "sample5.mp3"
 }, {
   "id": 6,
   "title": "Rock with You",
   "duration": 5.01,
-  "album_id": 2
+  "album_id": 2,
+  "file": "sample6.mp3"
 }, {
   "id": 7,
   "title": "Working Day and Night",
   "duration": 2.21,
-  "album_id": 2
+  "album_id": 2,
+  "file": "sample7.mp3"
 }, {
   "id": 8,
   "title": "Girlfriend",
   "duration": 4.05,
-  "album_id": 2
+  "album_id": 2,
+  "file": "sample8.mp3"
 }, {
   "id": 9,
   "title": "She's Out of My Life",
   "duration": 3.22,
-  "album_id": 2
+  "album_id": 2,
+  "file": "sample9.mp3"
 }, {
   "id": 10,
   "title": "It's the Falling in Love",
   "duration": 7.21,
-  "album_id": 2
+  "album_id": 2,
+  "file": "sample10.mp3"
 }, {
   "id": 11,
   "title": "Jam",
   "duration": 2.41,
-  "album_id": 3
+  "album_id": 3,
+  "file": "sample1.mp3"
 }, {
   "id": 12,
   "title": "In the Closet",
   "duration": 2.01,
-  "album_id": 3
+  "album_id": 3,
+  "file": "sample2.mp3"
 }, {
   "id": 13,
   "title": "Remember the Time",
   "duration": 2.01,
-  "album_id": 3
+  "album_id": 3,
+  "file": "sample2.mp3"
 }, {
   "id": 14,
   "title": "Can't Let Her Get Away",
   "duration": 2.01,
-  "album_id": 3
+  "album_id": 3,
+  "file": "sample3.mp3"
 }, {
   "id": 15,
   "title": "Heal the World",
   "duration": 2.01,
-  "album_id": 3
+  "album_id": 3,
+  "file": "sample4.mp3"
 }, {
   "id": 16,
   "title": "Black or White",
   "duration": 4.41,
-  "album_id": 3
+  "album_id": 3,
+  "file": "sample5.mp3"
 }, {
   "id": 17,
   "title": "Who Is It",
   "duration": 1.01,
-  "album_id": 3
+  "album_id": 3,
+  "file": "sample6.mp3"
 }, {
   "id": 18,
   "title": "Give In to Me",
   "duration": 4.01,
-  "album_id": 3
+  "album_id": 3,
+  "file": "sample7.mp3"
 }, {
   "id": 19,
   "title": "Will You Be There",
   "duration": 6.01,
-  "album_id": 3
+  "album_id": 3,
+  "file": "sample8.mp3"
 }, {
   "id": 20,
   "title": "Love Never Felt So Good",
   "duration": 3.01,
-  "album_id": 4
+  "album_id": 4,
+  "file": "sample9.mp3"
 }, {
   "id": 21,
   "title": "Chicago",
   "duration": 2.01,
-  "album_id": 4
+  "album_id": 4,
+  "file": "sample10.mp3"
 }, {
   "id": 22,
   "title": "Loving You",
   "duration": 2.01,
-  "album_id": 4
+  "album_id": 4,
+  "file": "sample1.mp3"
 }, {
   "id": 23,
   "title": "A Place with No Name",
   "duration": 2.01,
-  "album_id": 4
+  "album_id": 4,
+  "file": "sample2.mp3"
 }, {
   "id": 24,
   "title": "Slave to the Rhythm",
   "duration": 2.01,
-  "album_id": 4
+  "album_id": 4,
+  "file": "sample3.mp3"
 }, {
   "id": 25,
   "title": "Workin' Day and Night",
   "duration": 3.01,
-  "album_id": 5
+  "album_id": 5,
+  "file": "sample4.mp3"
 }, {
   "id": 26,
   "title": "Childhood",
   "duration": 2.21,
-  "album_id": 5
+  "album_id": 5,
+  "file": "sample5.mp3"
 }, {
   "id": 27,
   "title": "Wanna Be Startin' Somethin'",
   "duration": 4.31,
-  "album_id": 5
+  "album_id": 5,
+  "file": "sample6.mp3"
 }, {
   "id": 28,
   "title": "This Place Hotel",
   "duration": 2.01,
-  "album_id": 5
+  "album_id": 5,
+  "file": "sample7.mp3"
 }, {
   "id": 29,
   "title": "Dangerous",
   "duration": 2.01,
-  "album_id": 5
+  "album_id": 5,
+  "file": "sample8.mp3"
 }, {
   "id": 30,
   "title": "Roar",
   "duration": 2.01,
-  "album_id": 6
+  "album_id": 6,
+  "file": "sample9.mp3"
 }, {
   "id": 31,
   "title": "Birthday",
   "duration": 2.01,
-  "album_id": 6
+  "album_id": 6,
+  "file": "sample10.mp3"
 }, {
   "id": 32,
   "title": "Walking on Air",
   "duration": 4.21,
-  "album_id": 6
+  "album_id": 6,
+  "file": "sample1.mp3"
 }, {
   "id": 33,
   "title": "Unconditionally",
   "duration": 5.31,
-  "album_id": 6
+  "album_id": 6,
+  "file": "sample2.mp3"
 }, {
   "id": 34,
   "title": "This is How We Do",
   "duration": 7.01,
-  "album_id": 6
+  "album_id": 6,
+  "file": "sample3.mp3"
 }, {
   "id": 35,
   "title": "Chained to the Rhythm",
   "duration": 1.01,
-  "album_id": 7
+  "album_id": 7,
+  "file": "sample4.mp3"
 }, {
   "id": 36,
   "title": "Swish Swish",
   "duration": 1.21,
-  "album_id": 7
+  "album_id": 7,
+  "file": "sample5.mp3"
 }, {
   "id": 37,
   "title": "Hey Hey Hey",
   "duration": 2.01,
-  "album_id": 7
+  "album_id": 7,
+  "file": "sample6.mp3"
 }, {
   "id": 38,
   "title": "Miss You More",
   "duration": 2.01,
-  "album_id": 7
+  "album_id": 7,
+  "file": "sample7.mp3"
 }, {
   "id": 39,
   "title": "Power",
   "duration": 2.01,
-  "album_id": 7
+  "album_id": 7,
+  "file": "sample8.mp3"
 }, {
   "id": 40,
   "title": "End Game",
   "duration": 2.01,
-  "album_id": 8
+  "album_id": 8,
+  "file": "sample9.mp3"
 }, {
   "id": 41,
   "title": "Deligate",
   "duration": 2.01,
-  "album_id": 8
+  "album_id": 8,
+  "file": "sample10.mp3"
 }, {
   "id": 42,
   "title": "Gateway Car",
   "duration": 2.01,
-  "album_id": 8
+  "album_id": 8,
+  "file": "sample1.mp3"
 }, {
   "id": 43,
   "title": "Call it What You Want",
   "duration": 2.01,
-  "album_id": 8
+  "album_id": 8,
+  "file": "sample2.mp3"
 }, {
   "id": 44,
   "title": "New Year's Day",
   "duration": 1.11,
-  "album_id": 8
+  "album_id": 8,
+  "file": "sample3.mp3"
 }, {
   "id": 45,
   "title": "State of Grace",
   "duration": 3.01,
-  "album_id": 9
+  "album_id": 9,
+  "file": "sample4.mp3"
 }, {
   "id": 46,
   "title": "I knew You were Trubble",
   "duration": 4.01,
-  "album_id": 9
+  "album_id": 9,
+  "file": "sample5.mp3"
 }, {
   "id": 47,
   "title": "All too Well",
   "duration": 5.11,
-  "album_id": 9
+  "album_id": 9,
+  "file": "sample6.mp3"
 }, {
   "id": 48,
   "title": "The last Time",
   "duration": 2.21,
-  "album_id": 9
+  "album_id": 9,
+  "file": "sample8.mp3"
 }, {
   "id": 49,
   "title": "Everything has Changed",
   "duration": 3.01,
-  "album_id": 9
+  "album_id": 9,
+  "file": "sample9.mp3"
 }]

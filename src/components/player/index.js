@@ -5,9 +5,30 @@ import actions from '../../actions';
 import './style.scss';
 
 class Player extends Component {
+  audioRef = React.createRef();
+  audio = null;
   componentDidMount() {
     this.props.getPlaylist();
   }
+
+  playSong = (fileUri) => {
+    let audioFile = null;
+    try {
+      audioFile = require(`../../songs/${fileUri}`);
+    } catch(e) {
+      //TODO: Display error message to user.
+      console.error(e);
+    }
+
+    if(this.audio) {
+      this.audio.pause();
+      this.audio.currentTime = 0;
+    }
+    if(audioFile) {
+      this.audio = new Audio(audioFile);
+      this.audio.play();
+    }
+  };
 
   render() {
     const {currentSong, songs} = this.props;
@@ -19,7 +40,10 @@ class Player extends Component {
         </div>
         <Playlist
           songs={songs}
-          onClick={item => this.props.changeCurrentSong(item)}
+          onClick={item => {
+            this.props.changeCurrentSong(item);
+            this.playSong(item.song.file);
+          }}
         />
       </div>
     );

@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import memoize from 'memoize-one';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import actions from '../../actions';
 import './style.scss';
@@ -12,18 +13,18 @@ class Player extends Component {
     this.props.getPlaylist();
   }
 
-  playSong = (fileUri) => {
+  playSong = () => {
+    const fileUri = this.props.currentSong.song.file;
     let audioFile = null;
+    if(this.audio) {
+      this.audio.pause();
+      this.audio.currentTime = 0;
+    }
     try {
       audioFile = require(`../../songs/${fileUri}`);
     } catch(e) {
       //TODO: Display error message to user.
       console.error(e);
-    }
-
-    if(this.audio) {
-      this.audio.pause();
-      this.audio.currentTime = 0;
     }
     if(audioFile) {
       this.audio = new Audio(audioFile);
@@ -31,22 +32,31 @@ class Player extends Component {
     }
   };
 
+  toggleSong = memoize((status, currentSong) => {
+    if(!status || !currentSong) return;
+    if(status === 'playing') {
+      this.playSong();
+    } else if(status === 'resumed') {
+      this.audio.play();
+    } else if(status === 'paused') {
+      this.audio.pause();
+    } else if(status === 'stopped' && this.audio) {
+      this.audio.pause();
+      this.audio.currentTime = 0;
+    }
+  });
+
   render() {
     const {currentSong, songs, status} = this.props;
-    // this.toggleSong(status);
+    if(status && currentSong) {
+      this.toggleSong(status, currentSong.song.id);
+    }
     return (
       <div className="Player">
         <AlbumThumbnailControl
           album={currentSong && currentSong.song.album}
           status={status}
-          onControlClick={(status) => {
-            this.props.updatePlayerStatus(status);
-            if(status === 'paused' && this.audio) {
-              this.audio.pause();
-            } else if(status === 'playing' && this.audio) {
-              this.audio.play();
-            }
-          }}
+          onControlClick={(status) => this.props.updatePlayerStatus(status)}
         />
         <div className="controls">
           <div className="player-title">{currentSong && currentSong.song.album.title}</div>
@@ -58,7 +68,6 @@ class Player extends Component {
           onClick={item => {
             this.props.changeCurrentSong(item);
             this.props.updatePlayerStatus('playing');
-            this.playSong(item.song.file);
           }}
         />
       </div>
@@ -70,8 +79,8 @@ function Playlist({songs, currentSong, status, onClick}) {
   const items = songs.map((item, index) => {
     let currentSongIndicator = null;
     if(currentSong && item.song.id === currentSong.song.id) {
-      let icon = status === 'playing' ? 'play' : 'pause';
-      currentSongIndicator = <FontAwesomeIcon icon={icon} className="current-song-indicator" />
+      let icon = (status === 'playing' || status === 'resumed') ? 'play' : (status === 'paused') ? 'pause' : null;
+      currentSongIndicator = icon && <FontAwesomeIcon icon={icon} className="current-song-indicator" />
     }
     return (
       <div key={index} className="row" onClick={() => onClick(item)}>
@@ -114,10 +123,10 @@ function AlbumThumbnailControl({album, status, onControlClick}) {
     image = <div style={style} />
   }
   let controlIcon = null;
-  if(status === 'playing') {
+  if(status === 'playing' || status === 'resumed') {
     controlIcon = <FontAwesomeIcon icon="pause" className="control-icon" onClick={() => onControlClick('paused')} />
   } else if(status === 'paused') {
-    controlIcon = <FontAwesomeIcon icon="play" className="control-icon" onClick={() => onControlClick('playing')} />
+    controlIcon = <FontAwesomeIcon icon="play" className="control-icon" onClick={() => onControlClick('resumed')} />
   }
   return (
     <div className="thumbnail">

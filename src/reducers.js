@@ -111,6 +111,7 @@ function playListReducer(initialState = {songs: [], currentSong: null, loading: 
 
     case REPLACE_PLAYLIST:
       state.songs = payload;
+      state.currentSong = state.songs.length ? state.songs[0] : null;
       break;
 
     default:
@@ -122,6 +123,9 @@ function playerStatusReducer(initialState = {status: null}, {type, payload}) {
   let state = {};
   if(type === PLAYER_STATUS_UPDATE) {
     state.status = payload;
+  }
+  if(type === REPLACE_PLAYLIST) {
+    state.status = 'playing';
   }
   return Object.assign({}, initialState, state);
 }

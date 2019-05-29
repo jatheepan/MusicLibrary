@@ -17,10 +17,8 @@ function App(props) {
       <AppHeader />
       <div className="main">
         <div className="content">
-          <div>
-            {activePage === 'songs' ? <SongsList /> : null}
-            {activePage === 'albums' ? <AlbumList /> : null}
-          </div>
+          {activePage === 'songs' ? <SongsList /> : null}
+          {activePage === 'albums' ? <AlbumList /> : null}
         </div>
         <Player />
       </div>

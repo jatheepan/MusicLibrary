@@ -29,9 +29,9 @@ $player-width: 24em;
 }
 
 @mixin gradient-background {
-  background: -moz-linear-gradient(-45deg,  #a80d64 0%, #d631ff 100%);
-  background: -webkit-linear-gradient(-45deg,  #a80d64 0%, #d631ff 100%);
-  background: linear-gradient(135deg,  #a80d64 0%, #d631ff 100%);
+  background: -moz-linear-gradient(-45deg,  #af1431 0%, #240488 100%);
+  background: -webkit-linear-gradient(-45deg,  #af1431 0%, #240488 100%);
+  background: linear-gradient(110deg,  #af1431 0%, #240488 100%);
 }
 
 @mixin gradient-text-background {

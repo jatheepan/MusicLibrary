@@ -4,15 +4,20 @@
   .item {
     display: inline-block;
     cursor: pointer;
-    padding: 0.6em 1em;
+    padding: 0.8em 1em;
     border-radius: 1em;
     margin-right: 1em;
     text-transform: uppercase;
     font-size: 0.8em;
+    color: #fff;
+    border: 1px solid transparent;
+
+    &:hover {
+      border-color: rgba(255, 255, 255, 0.2);
+    }
 
     &.active {
-      color: #fff;
-      @include gradient-background;
+      background-color: rgba(255, 255, 255, 0.1);
     }
   }
 }

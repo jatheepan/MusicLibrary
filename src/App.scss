@@ -8,8 +8,6 @@
   }
   .content {
     flex: 1;
-    background-color: lighten($background-color, 3);
-    border-right: 4px solid darken($background-color, 3);
   }
 
   .Player {

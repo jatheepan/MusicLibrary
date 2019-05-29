@@ -3,13 +3,11 @@
 $column-padding: 1%;
 
 .AlbumList {
-  position: relative;
 
   .albums-body {
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
-    overflow-y: scroll;
   }
 
   .album {
@@ -61,7 +59,6 @@ $column-padding: 1%;
     font-size: 1.4em;
     text-align: center;
     width: 100%;
-    position: absolute;
-    top: 4em;
+    margin-top: 6em;
   }
 }

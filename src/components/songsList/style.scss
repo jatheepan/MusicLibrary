@@ -3,7 +3,6 @@
 $column-padding: 1.5%;
 
 .SongsList {
-  position: relative;
   .table {
     display: flex;
     flex-direction: column;
@@ -42,7 +41,7 @@ $column-padding: 1.5%;
     }
 
     &:hover {
-      background-color: darken($background-color, 0.5);
+      background-color: darken($background-color, 2);
     }
   }
 
@@ -75,7 +74,6 @@ $column-padding: 1.5%;
     font-size: 1.4em;
     text-align: center;
     width: 100%;
-    position: absolute;
-    top: 4em;
+    margin-top: 4em;
   }
 }

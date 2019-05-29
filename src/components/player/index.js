@@ -10,6 +10,7 @@ class Player extends Component {
     return (
       <div className="Player">
         <AlbumThumbnail album={currentSong && currentSong.album} />
+        <div className="title">{currentSong && currentSong.album.title}</div>
       </div>
     );
   }

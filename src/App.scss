@@ -7,10 +7,17 @@
     display: flex;
   }
   .content {
-    flex: 1;
+    width: calc(100vw - #{$player-width});
+  }
+
+  .album-widget {
+    height: $album-widget-height;
   }
 
   .Player {
+    position: fixed;
+    right: 0;
+    top: $header-height;
     width: $player-width;
   }
 }

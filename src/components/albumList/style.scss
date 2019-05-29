@@ -3,6 +3,9 @@
 $column-padding: 1%;
 
 .AlbumList {
+  h1 {
+    margin-left: 0.4em;
+  }
 
   .albums-body {
     display: flex;
@@ -53,12 +56,5 @@ $column-padding: 1%;
   .error {
     color: #d31414;
     border-color: #d31414;
-  }
-  .no-data {
-    font-weight: bold;
-    font-size: 1.4em;
-    text-align: center;
-    width: 100%;
-    margin-top: 6em;
   }
 }

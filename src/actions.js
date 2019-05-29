@@ -43,13 +43,13 @@ function updateQuery(query) {
   };
 }
 
-const getAlbums = (query) => dispatch => {
+const getAlbums = () => dispatch => {
   dispatch({
     type: ALBUMS_WILL_FETCH,
     payload: null
   });
 
-  library.getAlbums(query)
+  library.getAlbums()
     .then(songs => dispatch({
       type: ALBUMS_DID_FETCH,
       payload: songs

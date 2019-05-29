@@ -17,8 +17,10 @@ function App(props) {
       <AppHeader />
       <div className="main">
         <div className="content">
-          {activePage === 'songs' ? <SongsList /> : null}
-          {activePage === 'albums' ? <AlbumList /> : null}
+          <SongsList />
+          <div className="album-widget">
+            <AlbumList />
+          </div>
         </div>
         <Player />
       </div>

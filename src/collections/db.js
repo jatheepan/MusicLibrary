@@ -11,10 +11,9 @@ function delayedResolve(payload) {
   });
 }
 
-function getAlbums(query = '') {
+function getAlbums() {
   const songs = songsCollection;
-  let albums = filterList(albumsCollection, query);
-  albums = albums.map(album => {
+  const albums = albumsCollection.map(album => {
     album.songs = songs.filter(({album_id}) => album_id === album.id);
     return album;
   });

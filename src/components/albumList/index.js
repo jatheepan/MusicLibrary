@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import memoize from 'memoize-one';
 import actions from '../../actions';
 import './style.scss';
 
@@ -10,10 +9,7 @@ class AlbumList extends Component {
     this.props.getAlbums(query);
   }
 
-  fetchAlbums = memoize(query => this.props.getAlbums(query, this.props.sort));
-
   render() {
-    this.fetchAlbums(this.props.query);
     const {albums, error, loading} = this.props;
     const listItems = albums.map(album => (
       <div className="album" key={album.id}>
@@ -25,14 +21,9 @@ class AlbumList extends Component {
     return (
       <div className="AlbumList">
         {errorMessage}
+        <h1>Albums</h1>
         <div className="albums-body">
-          {!albums.length && !loading ? (
-            this.props.query.length ? (
-              <div className="no-data">No albums for search query</div>
-            ) : (
-              <div className="no-data">No albums for found</div>
-            )
-          ) : null}
+          {!albums.length && !loading ? <div className="no-data">No albums for found</div> : null}
           {listItems}
         </div>
       </div>
@@ -40,15 +31,15 @@ class AlbumList extends Component {
   }
 }
 
-function mapStateToProps({albumList: {albums, error, sort}, global: {loading, query}}) {
+function mapStateToProps({albumList: {albums, error}, global: {loading}}) {
   return {
-    albums, loading, error, sort, query
+    albums, loading, error
   };
 }
 
 function mapDispatchToProps(dispatch) {
   return {
-    getAlbums: (query) => dispatch(actions.getAlbums(query))
+    getAlbums: () => dispatch(actions.getAlbums())
   };
 }
 

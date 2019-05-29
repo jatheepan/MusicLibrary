@@ -45,6 +45,10 @@
       font-size: 1em;
       border: none;
       width: 15em;
+      &::placeholder {
+        color: #fff;
+        opacity: 0.4;
+      }
     }
     button {
       cursor: pointer;

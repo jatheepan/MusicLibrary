@@ -10,7 +10,10 @@ const ALBUMS_WILL_FETCH = 'Albums will fetch';
 const ALBUMS_DID_FETCH = 'Albums did fetch';
 const ALBUMS_FETCH_ERROR = 'Albums fetch error';
 
-const PAGE_CHANGE = 'Page navigation';
+const PLAYLIST_WILL_FETCH = 'Playlist will fetch';
+const PLAYLIST_DID_FETCH = 'Playlist did fetch';
+const PLAYLIST_FETCH_ERROR = 'Playlist fetch error';
+const PLAYLIST_CHANGE_CURRENT_SONG = 'Playlist change current song';
 
 const getSongs = (query, sort) => dispatch => {
   dispatch({
@@ -58,19 +61,39 @@ const getAlbums = () => dispatch => {
       type: SONGS_FETCH_ERROR,
       payload: error
     }));
-}
+};
 
-const pageChange = activePage => ({
-  type: PAGE_CHANGE,
-  payload: activePage
-});
+const getPlaylist = () => dispatch => {
+  dispatch({
+    type: PLAYLIST_WILL_FETCH,
+    payload: null
+  });
+
+  library.getPlaylist()
+    .then(list => dispatch({
+      type: PLAYLIST_DID_FETCH,
+      payload: list
+    }))
+    .catch(error => dispatch({
+      type: PLAYLIST_FETCH_ERROR,
+      payload: error
+    }));
+};
+
+const changeCurrentSong = item => dispatch => {
+  dispatch ({
+    type: PLAYLIST_CHANGE_CURRENT_SONG,
+    payload: item
+  });
+};
 
 export default {
   getSongs,
   updateSort,
   updateQuery,
   getAlbums,
-  pageChange
+  getPlaylist,
+  changeCurrentSong
 };
 
 export {
@@ -82,5 +105,8 @@ export {
   ALBUMS_WILL_FETCH,
   ALBUMS_DID_FETCH,
   ALBUMS_FETCH_ERROR,
-  PAGE_CHANGE
+  PLAYLIST_WILL_FETCH,
+  PLAYLIST_DID_FETCH,
+  PLAYLIST_FETCH_ERROR,
+  PLAYLIST_CHANGE_CURRENT_SONG
 };

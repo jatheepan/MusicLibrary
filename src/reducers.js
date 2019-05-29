@@ -8,7 +8,10 @@ import {
   ALBUMS_WILL_FETCH,
   ALBUMS_DID_FETCH,
   ALBUMS_FETCH_ERROR,
-  PAGE_CHANGE
+  PLAYLIST_WILL_FETCH,
+  PLAYLIST_DID_FETCH,
+  PLAYLIST_FETCH_ERROR,
+  PLAYLIST_CHANGE_CURRENT_SONG
 } from './actions';
 
 function songsReducer(initialState = {
@@ -52,7 +55,7 @@ function albumReducer(initialState = {albums: []}, {type, payload}) {
   return Object.assign({}, initialState, state);
 }
 
-function globalReducer(initialState = {query: '', loading: false, activePage: 'songs'}, {type, payload}) {
+function globalReducer(initialState = {query: '', loading: false}, {type, payload}) {
   const state = {};
   switch(type) {
     case SONGS_WILL_FETCH:
@@ -70,18 +73,32 @@ function globalReducer(initialState = {query: '', loading: false, activePage: 's
     case ALBUMS_FETCH_ERROR:
       state.loading = false;
       break;
-
-    case PAGE_CHANGE:
-      state.activePage = payload;
-      break;
     default:
   }
   return Object.assign({}, initialState, state);
 }
 
-function playListReducer(initialState = {songs: [], currentSong: null}, {type, payload}) {
+function playListReducer(initialState = {songs: [], currentSong: null, loading: false}, {type, payload}) {
   const state = {};
+  switch(type) {
+    case PLAYLIST_WILL_FETCH:
+      state.loading = true;
+      break;
 
+    case PLAYLIST_DID_FETCH:
+      state.loading = false;
+      state.songs = payload;
+      break;
+
+    case PLAYLIST_FETCH_ERROR:
+      state.loading = false;
+      break;
+
+    case PLAYLIST_CHANGE_CURRENT_SONG:
+      state.currentSong = payload;
+      break;
+    default:
+  }
   return Object.assign({}, initialState, state);
 }
 
@@ -89,5 +106,5 @@ export default combineReducers({
   global: globalReducer,
   songsList: songsReducer,
   albumList: albumReducer,
-  playList: playListReducer
+  playlist: playListReducer
 });

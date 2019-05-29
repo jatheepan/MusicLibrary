@@ -1,5 +1,6 @@
 import albumsCollection from './albums.json';
 import songsCollection from './songs.json';
+import playlistCollection from './playlist.json';
 
 /**
  * Just to simulate the delay of real api calls.
@@ -17,7 +18,6 @@ function getAlbums() {
     album.songs = songs.filter(({album_id}) => album_id === album.id);
     return album;
   });
-
   return delayedResolve(albums);
 }
 
@@ -32,6 +32,17 @@ function getSongs(query = '', sort = {property: 'title', direction: 'asc'}) {
 
   songs = sortList(filterList(songs, query), sort);
   return delayedResolve(songs);
+}
+
+async function getPlaylist() {
+  const songs = await getSongs();
+  return playlistCollection.map(p => {
+    const song = songs.find(s => s.id === p.song_id);
+    if(song) {
+      p.song = song;
+    }
+    return p;
+  });
 }
 
 function filterList(list, query) {
@@ -80,5 +91,6 @@ function sortList(list, sort) {
 
 export default {
   getAlbums,
-  getSongs
+  getSongs,
+  getPlaylist
 };

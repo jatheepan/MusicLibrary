@@ -5,26 +5,53 @@ import actions from '../../actions';
 import './style.scss';
 
 class Player extends Component {
+  componentDidMount() {
+    this.props.getPlaylist();
+  }
+
   render() {
-    const {currentSong} = this.props;
+    const {currentSong, songs} = this.props;
     return (
       <div className="Player">
-        <AlbumThumbnail album={currentSong && currentSong.album} />
-        <div className="title">{currentSong && currentSong.album.title}</div>
+        <AlbumThumbnail album={currentSong && currentSong.song.album} />
+        <div className="controls">
+          <div className="player-title">{currentSong && currentSong.song.title}</div>
+        </div>
+        <Playlist
+          songs={songs}
+          onClick={item => this.props.changeCurrentSong(item)}
+        />
       </div>
     );
   }
 }
 
-function mapStateToProps({playList}) {
+function Playlist({songs, onClick}) {
+  const items = songs.map(item => {
+    return (
+      <div key={item.id} className="row" onClick={() => onClick(item)}>
+        <div className="column title">{item.song.title}</div>
+        <div className="column duration">{item.song.duration.toFixed(2)}</div>
+      </div>
+    );
+  });
+  return(
+    <div className="Playlist">{items}</div>
+  );
+}
+
+function mapStateToProps({playlist}) {
   return {
-    currentSong: playList.currentSong
+    currentSong: playlist.currentSong,
+    songs: playlist.songs
   };
 }
 
 function mapDispatchToProps(dispatch) {
   return {
-    pageChange: (page) => dispatch(actions.pageChange(page))
+    pageChange: (page) => dispatch(actions.pageChange(page)),
+    getPlaylist: () => dispatch(actions.getPlaylist()),
+    changeCurrentSong: (item) => dispatch(actions.changeCurrentSong(item))
   };
 }
 
@@ -36,7 +63,6 @@ function AlbumThumbnail({album}) {
       color: 'red',
       backgroundImage: `url(${album.thumbnail})`
     };
-    console.log(style)
     image = <div style={style} />
   }
   return (

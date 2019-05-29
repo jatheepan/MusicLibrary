@@ -8,7 +8,11 @@ function getAlbums(query) {
   return db.getAlbums(query);
 }
 
+function getPlaylist() {
+  return db.getPlaylist();
+}
 export default {
   getSongs,
-  getAlbums
+  getAlbums,
+  getPlaylist
 };

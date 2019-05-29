@@ -3,6 +3,10 @@
 .Player {
   background-color: $background-color;
 
+  .controls {
+    height: 3em;
+  }
+
   .thumbnail {
     height: 10em;
     width: 10em;
@@ -29,11 +33,39 @@
     }
   }
 
-  .title {
+  .player-title {
     text-align: center;
     margin-top: 1em;
     margin-bottom: 0.5em;
     font-size: 1.2em;
     font-weight: bold;
+  }
+}
+
+.Playlist {
+  padding: 0 2em;
+  overflow-y: scroll;
+  .row {
+    padding: 0.5em 1em;
+    border-bottom: 1px solid darken($background-color, 3);
+    .column {
+      display: inline-block;
+      vertical-align: middle;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+      overflow: hidden;
+    }
+
+    &:hover {
+      background-color: darken($background-color, 2);
+    }
+  }
+
+  .title {
+    width: 85%;
+  }
+  .duration {
+    width: 15%;
+    text-align: right;
   }
 }

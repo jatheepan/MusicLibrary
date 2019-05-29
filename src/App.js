@@ -11,7 +11,6 @@ import './App.scss';
 library.add([faCaretUp, faCaretDown, faSearch, faCompactDisc, faMusic]);
 
 function App(props) {
-  const {activePage} = props;
   return (
     <div className="App">
       <AppHeader />
@@ -28,10 +27,8 @@ function App(props) {
   );
 }
 
-function mapStateToProps({global: {activePage}}) {
-  return {
-    activePage
-  };
+function mapStateToProps({global: {}}) {
+  return {};
 }
 
 function mapDispatchToProps(dispatch) {

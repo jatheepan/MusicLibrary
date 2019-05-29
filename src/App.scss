@@ -19,6 +19,7 @@
     right: 0;
     top: $header-height;
     width: $player-width;
+    height: calc(100vh - #{$header-height});
   }
 }
 .spinner {

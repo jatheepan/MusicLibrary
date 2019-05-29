@@ -8,4 +8,5 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 ## Sample songs
 [www.bensound.com](https://www.bensound.com).
 
-
+## Preview
+![Preview](./preview.png)

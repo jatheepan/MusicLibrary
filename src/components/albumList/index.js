@@ -13,7 +13,12 @@ class AlbumList extends Component {
   render() {
     const {albums, error, loading} = this.props;
     const listItems = albums.map(album => (
-      <div className="album" key={album.id}>
+      <div className="album" key={album.id} onClick={() => {
+        this.props.replacePlaylist(album.songs.map(song => ({
+          song_id: song.id,
+          song: song
+        })));
+      }}>
         <div className="thumbnail"><img src={album.thumbnail} alt={album.title} /></div>
         <div className="title">{album.title}</div>
       </div>
@@ -40,7 +45,8 @@ function mapStateToProps({albumList: {albums, error}, global: {loading}}) {
 
 function mapDispatchToProps(dispatch) {
   return {
-    getAlbums: () => dispatch(actions.getAlbums())
+    getAlbums: () => dispatch(actions.getAlbums()),
+    replacePlaylist: (newSongs) => dispatch(actions.replacePlaylist(newSongs))
   };
 }
 

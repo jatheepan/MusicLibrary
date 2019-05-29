@@ -49,7 +49,7 @@ class Player extends Component {
           }}
         />
         <div className="controls">
-          <div className="player-title">{currentSong && currentSong.song.title}</div>
+          <div className="player-title">{currentSong && currentSong.song.album.title}</div>
         </div>
         <Playlist
           currentSong={currentSong}

@@ -13,7 +13,8 @@ import {
   PLAYLIST_FETCH_ERROR,
   PLAYLIST_CHANGE_CURRENT_SONG,
   ADD_TO_PLAYLIST,
-  PLAYER_STATUS_UPDATE
+  PLAYER_STATUS_UPDATE,
+  REPLACE_PLAYLIST
 } from './actions';
 
 function songsReducer(initialState = {
@@ -106,6 +107,10 @@ function playListReducer(initialState = {songs: [], currentSong: null, loading: 
         song_id: payload.id,
         song: payload
       });
+      break;
+
+    case REPLACE_PLAYLIST:
+      state.songs = payload;
       break;
 
     default:

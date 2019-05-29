@@ -7,6 +7,7 @@ import './AppHeader.scss';
 
 function AppHeader(props) {
   const {loading} = props;
+  let searchRef = null;
   return (
     <div className="AppHeader">
       <h1>Music Library</h1>
@@ -14,6 +15,7 @@ function AppHeader(props) {
       <div className="search-form">
         <div className="search-field">
           <input
+            ref={ref => searchRef = ref}
             defaultValue={props.query}
             placeholder="Search Song, Album or Artist"
             onKeyUp={e => {
@@ -22,7 +24,9 @@ function AppHeader(props) {
               props.updateQuery(query);
             }
           }} />
-          <button><FontAwesomeIcon icon="search" /></button>
+        <button onClick={() => {
+          props.updateQuery(searchRef.value);
+        }}><FontAwesomeIcon icon="search" /></button>
         </div>
       </div>
     </div>

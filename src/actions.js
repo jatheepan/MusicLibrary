@@ -19,6 +19,11 @@ const PLAYLIST_CHANGE_CURRENT_SONG = 'PLAYLIST_CHANGE_CURRENT_SONG';
 const PLAYER_STATUS_UPDATE = 'PLAYER_STATUS_UPDATE';
 const REPLACE_PLAYLIST = 'REPLACE_PLAYLIST';
 
+/**
+ * Get or Search songs.
+ * @param query
+ * @param sort
+ */
 const getSongs = (query, sort) => dispatch => {
   dispatch({
     type: SONGS_WILL_FETCH,
@@ -36,19 +41,25 @@ const getSongs = (query, sort) => dispatch => {
     }));
 }
 
-function updateSort(sort) {
-  return {
-    type: SORT_SONGS,
-    payload: sort
-  };
-};
+/**
+ * Sort songs list.
+ * @param sort
+ * @returns {{type: string, payload: *}}
+ */
+const updateSort = sort => ({
+  type: SORT_SONGS,
+  payload: sort
+});
 
-function updateQuery(query) {
-  return {
-    type: UPDATE_SEARCH_QUERY,
-    payload: query
-  };
-}
+
+/**
+ * Update search query.
+ * @param query
+ */
+const updateQuery = query => ({
+  type: UPDATE_SEARCH_QUERY,
+  payload: query
+});
 
 const getAlbums = () => dispatch => {
   dispatch({
@@ -67,6 +78,9 @@ const getAlbums = () => dispatch => {
     }));
 };
 
+/**
+ * To load playlist on page load.
+ */
 const getPlaylist = () => dispatch => {
   dispatch({
     type: PLAYLIST_WILL_FETCH,
@@ -84,6 +98,10 @@ const getPlaylist = () => dispatch => {
     }));
 };
 
+/**
+ * Change currently playing song
+ * @param item
+ */
 const changeCurrentSong = item => dispatch => {
   dispatch ({
     type: PLAYLIST_CHANGE_CURRENT_SONG,
@@ -91,6 +109,10 @@ const changeCurrentSong = item => dispatch => {
   });
 };
 
+/**
+ * Add single song to playlist.
+ * @param song
+ */
 const addToPlaylist = song => dispatch => {
   dispatch({
     type: ADD_TO_PLAYLIST,
@@ -98,6 +120,11 @@ const addToPlaylist = song => dispatch => {
   });
 };
 
+/**
+ * Replace playlist with many songs.
+ * Used by album clicks.
+ * @param songs
+ */
 const replacePlaylist = songs => dispatch => {
   dispatch({
     type: REPLACE_PLAYLIST,
@@ -105,6 +132,10 @@ const replacePlaylist = songs => dispatch => {
   });
 };
 
+/**
+ * Responsible for player's behaviour.
+ * @param status
+ */
 const updatePlayerStatus = status => dispatch => {
   dispatch({
     type: PLAYER_STATUS_UPDATE,

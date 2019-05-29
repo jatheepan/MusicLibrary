@@ -17,6 +17,13 @@ import {
   REPLACE_PLAYLIST
 } from './actions';
 
+/**
+ * Songs Reducer
+ * @param initialState
+ * @param type
+ * @param payload
+ * @returns {Object}
+ */
 function songsReducer(initialState = {
   songs: [],
   sort: {property: 'title', direction: 'asc'},
@@ -41,6 +48,13 @@ function songsReducer(initialState = {
   return Object.assign({}, initialState, state);
 }
 
+/**
+ * Album Reducer.
+ * @param initialState
+ * @param type
+ * @param payload
+ * @returns {Object}
+ */
 function albumReducer(initialState = {albums: []}, {type, payload}) {
   const state = {};
   switch(type) {
@@ -58,6 +72,13 @@ function albumReducer(initialState = {albums: []}, {type, payload}) {
   return Object.assign({}, initialState, state);
 }
 
+/**
+ * Global Reducer.
+ * @param initialState
+ * @param type
+ * @param payload
+ * @returns {Object}
+ */
 function globalReducer(initialState = {query: '', loading: false}, {type, payload}) {
   const state = {};
   switch(type) {
@@ -81,6 +102,13 @@ function globalReducer(initialState = {query: '', loading: false}, {type, payloa
   return Object.assign({}, initialState, state);
 }
 
+/**
+ * Playlist Reducer.
+ * @param initialState
+ * @param type
+ * @param payload
+ * @returns {Object}
+ */
 function playListReducer(initialState = {songs: [], currentSong: null, loading: false}, {type, payload}) {
   const state = {};
   switch(type) {
@@ -119,6 +147,13 @@ function playListReducer(initialState = {songs: [], currentSong: null, loading: 
   return Object.assign({}, initialState, state);
 }
 
+/**
+ * Player Status Reducer.
+ * @param initialState
+ * @param type
+ * @param payload
+ * @returns {*}
+ */
 function playerStatusReducer(initialState = {status: null}, {type, payload}) {
   let state = {};
   if(type === PLAYER_STATUS_UPDATE) {

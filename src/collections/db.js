@@ -1,3 +1,9 @@
+/**
+ *
+ * This is a mock database.
+ *
+ */
+
 import albumsCollection from './albums.json';
 import songsCollection from './songs.json';
 import playlistCollection from './playlist.json';

@@ -6,7 +6,6 @@ import actions from '../../actions';
 import './style.scss';
 
 class Player extends Component {
-  audioRef = React.createRef();
   audio = null;
 
   componentDidMount() {
@@ -75,6 +74,15 @@ class Player extends Component {
   }
 }
 
+/**
+ * Playlist Component.
+ * @param songs
+ * @param currentSong
+ * @param status
+ * @param onClick
+ * @returns {XML}
+ * @constructor
+ */
 function Playlist({songs, currentSong, status, onClick}) {
   const items = songs.map((item, index) => {
     let currentSongIndicator = null;
@@ -112,6 +120,14 @@ function mapDispatchToProps(dispatch) {
   };
 }
 
+/**
+ * Player's thumbnail and play/pause control button.
+ * @param album
+ * @param status
+ * @param onControlClick
+ * @returns {XML}
+ * @constructor
+ */
 function AlbumThumbnailControl({album, status, onControlClick}) {
   let image = <FontAwesomeIcon icon="music" className="icon" />;
 

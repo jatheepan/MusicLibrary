@@ -16,6 +16,8 @@ const PLAYLIST_DID_FETCH = 'PLAYLIST_DID_FETCH';
 const PLAYLIST_FETCH_ERROR = 'PLAYLIST_FETCH_ERROR';
 const PLAYLIST_CHANGE_CURRENT_SONG = 'PLAYLIST_CHANGE_CURRENT_SONG';
 
+const PLAYER_STATUS_UPDATE = 'PLAYER_STATUS_UPDATE';
+
 const getSongs = (query, sort) => dispatch => {
   dispatch({
     type: SONGS_WILL_FETCH,
@@ -95,6 +97,13 @@ const addToPlaylist = song => dispatch => {
   });
 };
 
+const updatePlayerStatus = status => dispatch => {
+  dispatch({
+    type: PLAYER_STATUS_UPDATE,
+    payload: status
+  })
+}
+
 export default {
   getSongs,
   updateSort,
@@ -102,7 +111,8 @@ export default {
   getAlbums,
   getPlaylist,
   changeCurrentSong,
-  addToPlaylist
+  addToPlaylist,
+  updatePlayerStatus
 };
 
 export {
@@ -118,5 +128,6 @@ export {
   PLAYLIST_WILL_FETCH,
   PLAYLIST_DID_FETCH,
   PLAYLIST_FETCH_ERROR,
-  PLAYLIST_CHANGE_CURRENT_SONG
+  PLAYLIST_CHANGE_CURRENT_SONG,
+  PLAYER_STATUS_UPDATE
 };

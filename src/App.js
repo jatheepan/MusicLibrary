@@ -1,5 +1,4 @@
 import React from 'react';
-import { connect } from 'react-redux';
 import SongsList from './components/songsList';
 import AlbumList from './components/albumList';
 import AppHeader from './components/AppHeader';
@@ -11,12 +10,14 @@ import {
   faSearch,
   faCompactDisc,
   faMusic,
-  faPlus } from '@fortawesome/free-solid-svg-icons';
+  faPlus,
+  faPlay,
+  faPause } from '@fortawesome/free-solid-svg-icons';
 import './App.scss';
 
-library.add([faCaretUp, faCaretDown, faSearch, faCompactDisc, faMusic, faPlus]);
+library.add([faCaretUp, faCaretDown, faSearch, faCompactDisc, faMusic, faPlus, faPlay, faPause]);
 
-function App(props) {
+export default function App() {
   return (
     <div className="App">
       <AppHeader />
@@ -32,13 +33,3 @@ function App(props) {
     </div>
   );
 }
-
-function mapStateToProps({global: {}}) {
-  return {};
-}
-
-function mapDispatchToProps(dispatch) {
-  return {};
-}
-
-export default connect(mapStateToProps, mapDispatchToProps)(App);

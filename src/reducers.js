@@ -12,7 +12,8 @@ import {
   PLAYLIST_DID_FETCH,
   PLAYLIST_FETCH_ERROR,
   PLAYLIST_CHANGE_CURRENT_SONG,
-  ADD_TO_PLAYLIST
+  ADD_TO_PLAYLIST,
+  PLAYER_STATUS_UPDATE
 } from './actions';
 
 function songsReducer(initialState = {
@@ -112,9 +113,18 @@ function playListReducer(initialState = {songs: [], currentSong: null, loading: 
   return Object.assign({}, initialState, state);
 }
 
+function playerStatusReducer(initialState = {status: null}, {type, payload}) {
+  let state = {};
+  if(type === PLAYER_STATUS_UPDATE) {
+    state.status = payload;
+  }
+  return Object.assign({}, initialState, state);
+}
+
 export default combineReducers({
   global: globalReducer,
   songsList: songsReducer,
   albumList: albumReducer,
-  playlist: playListReducer
+  playlist: playListReducer,
+  player: playerStatusReducer
 });

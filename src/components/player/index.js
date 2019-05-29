@@ -7,6 +7,7 @@ import './style.scss';
 class Player extends Component {
   audioRef = React.createRef();
   audio = null;
+
   componentDidMount() {
     this.props.getPlaylist();
   }
@@ -31,17 +32,32 @@ class Player extends Component {
   };
 
   render() {
-    const {currentSong, songs} = this.props;
+    const {currentSong, songs, status} = this.props;
+    // this.toggleSong(status);
     return (
       <div className="Player">
-        <AlbumThumbnail album={currentSong && currentSong.song.album} />
+        <AlbumThumbnailControl
+          album={currentSong && currentSong.song.album}
+          status={status}
+          onControlClick={(status) => {
+            this.props.updatePlayerStatus(status);
+            if(status === 'paused' && this.audio) {
+              this.audio.pause();
+            } else if(status === 'playing' && this.audio) {
+              this.audio.play();
+            }
+          }}
+        />
         <div className="controls">
           <div className="player-title">{currentSong && currentSong.song.title}</div>
         </div>
         <Playlist
+          currentSong={currentSong}
+          status={status}
           songs={songs}
           onClick={item => {
             this.props.changeCurrentSong(item);
+            this.props.updatePlayerStatus('playing');
             this.playSong(item.song.file);
           }}
         />
@@ -50,10 +66,16 @@ class Player extends Component {
   }
 }
 
-function Playlist({songs, onClick}) {
+function Playlist({songs, currentSong, status, onClick}) {
   const items = songs.map((item, index) => {
+    let currentSongIndicator = null;
+    if(currentSong && item.song.id === currentSong.song.id) {
+      let icon = status === 'playing' ? 'play' : 'pause';
+      currentSongIndicator = <FontAwesomeIcon icon={icon} className="current-song-indicator" />
+    }
     return (
       <div key={index} className="row" onClick={() => onClick(item)}>
+        {currentSongIndicator}
         <div className="column title">{item.song.title}</div>
         <div className="column duration">{item.song.duration.toFixed(2)}</div>
       </div>
@@ -64,10 +86,11 @@ function Playlist({songs, onClick}) {
   );
 }
 
-function mapStateToProps({playlist}) {
+function mapStateToProps({playlist, player}) {
   return {
     currentSong: playlist.currentSong,
-    songs: playlist.songs
+    songs: playlist.songs,
+    status: player.status
   };
 }
 
@@ -75,11 +98,12 @@ function mapDispatchToProps(dispatch) {
   return {
     pageChange: (page) => dispatch(actions.pageChange(page)),
     getPlaylist: () => dispatch(actions.getPlaylist()),
-    changeCurrentSong: (item) => dispatch(actions.changeCurrentSong(item))
+    changeCurrentSong: (item) => dispatch(actions.changeCurrentSong(item)),
+    updatePlayerStatus: (status) => dispatch(actions.updatePlayerStatus(status))
   };
 }
 
-function AlbumThumbnail({album}) {
+function AlbumThumbnailControl({album, status, onControlClick}) {
   let image = <FontAwesomeIcon icon="music" className="icon" />;
 
   if(album && album.thumbnail) {
@@ -89,9 +113,16 @@ function AlbumThumbnail({album}) {
     };
     image = <div style={style} />
   }
+  let controlIcon = null;
+  if(status === 'playing') {
+    controlIcon = <FontAwesomeIcon icon="pause" className="control-icon" onClick={() => onControlClick('paused')} />
+  } else if(status === 'paused') {
+    controlIcon = <FontAwesomeIcon icon="play" className="control-icon" onClick={() => onControlClick('playing')} />
+  }
   return (
     <div className="thumbnail">
       {image}
+      {controlIcon}
     </div>
   );
 }

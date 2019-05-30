@@ -28,6 +28,10 @@ class Player extends Component {
     if(audioFile) {
       this.audio = new Audio(audioFile);
       this.audio.play();
+      this.audio.addEventListener('loadedmetadata', () => {
+        // console.log(this.audio.duration);
+        // console.log(this.audio.currentTime);
+      });
     }
   };
 
@@ -57,7 +61,7 @@ class Player extends Component {
           status={status}
           onControlClick={(status) => this.props.updatePlayerStatus(status)}
         />
-        <Timeline audio={this.audio} />
+        <Timeline song={currentSong && currentSong.song} audio={this.audio} />
         <div className="controls">
           <div className="player-title">{currentSong && currentSong.song.album.title || '--'}</div>
         </div>
@@ -155,25 +159,63 @@ function AlbumThumbnailControl({album, status, onControlClick}) {
 
 class Timeline extends Component {
   state = {
-    currentTime: 0
+    currentTime: 0,
+    loaded: false,
+    duration: 0,
+    indicatorPosition: 0
   };
 
   componentDidMount() {
-    if(this.props.audio) {
-      this.props.audio.on('loadedmetadata', () => {
-        console.log(this.props.audio.duration)
-      });
-    }
   }
 
+  loadedMetaDataCallbackFn = (e) => {
+    const audio = e.target;
+    this.setState({
+      duration: audio.duration,
+      currentTime: audio.currentTime
+    });
+  };
+
+  playCallbackFn = (e) => {
+    const audio = e.target;
+    this.setState({
+      currentTime: audio.currentTime
+    });
+    setInterval(this.updateCurrentTimeFn, 1000);
+  }
+
+  pauseCallbackFn = (e) => {
+    clearInterval(this.updateCurrentTimeFn);
+  }
+
+  updateCurrentTimeFn = () => {
+    this.setState({
+      currentTime: this.props.audio && this.props.audio.currentTime
+    });
+  }
+
+  timelineData = memoize((song, audio) => {
+    if(audio) {
+      audio.removeEventListener('loadedmetadata', this.loadedMetaDataCallbackFn);
+      audio.addEventListener('loadedmetadata', this.loadedMetaDataCallbackFn);
+      audio.removeEventListener('play', this.playCallbackFn);
+      audio.addEventListener('play', this.playCallbackFn);
+      audio.removeEventListener('pause', this.pauseCallbackFn);
+      audio.addEventListener('pause', this.pauseCallbackFn);
+    }
+  });
+
   render() {
-    const duration = 0;
-    let indicatorPosition = 0;
-    console.log(duration, this.props)
+    this.timelineData(this.props.song, this.props.audio);
+    let {indicatorPosition, duration, currentTime} = this.state;
+
+    const barWidth = 200;
+    indicatorPosition = (duration / barWidth) * currentTime;
+
     return (
       <div className="Timeline">
-        <div className={`bar ${duration === 0 ? 'disabled' : ''}`}>
-          <div className="indicator" />
+        <div className="bar-background" style={{width: barWidth}}>
+          <div className="bar" style={{width: `${indicatorPosition}px`}} />
         </div>
       </div>
     );

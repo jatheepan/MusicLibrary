@@ -41,6 +41,7 @@ class SongsList extends Component {
     return (
       <div className="SongsList">
         {errorMessage}
+        <h1>Songs</h1>
         <div className="table">
           <div className="table-header">
             <div className="column title" onClick={() => this.sort('title')}>

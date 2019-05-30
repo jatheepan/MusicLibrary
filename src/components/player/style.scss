@@ -1,7 +1,7 @@
 @import '../../commons.scss';
 
 .Player {
-  background-color: $background-color;
+  background-color: darken($background-color, 2);
 
   .controls {
     height: 3em;
@@ -11,7 +11,6 @@
     height: 10em;
     width: 10em;
     margin: auto;
-    margin-top: 2em;
     border-radius: 1em;
     background-color: darken($background-color, 4);
     position: relative;
@@ -31,6 +30,12 @@
       top: 34%;
       position: absolute;
       left: 34%;
+    }
+  }
+
+  @media (min-width: 768px) {
+    .thumbnail {
+      margin-top: 2em;
     }
   }
 
@@ -54,13 +59,10 @@
 }
 
 .Playlist {
-  padding: 0 2em;
-  overflow-y: scroll;
   .row {
     position: relative;
     cursor: pointer;
-    margin-left: 2em;
-    padding: 0.5em;
+    padding: 0.5em 1em 0.5em 1.5em;
     transition: background-color 0.2s;
     border-bottom: 1px solid darken($background-color, 3);
     .column {
@@ -77,8 +79,8 @@
 
     .current-song-indicator {
       position: absolute;
-      margin-left: -26px;
       font-size: 10px;
+      left: 10px;
       top: 13px;
     }
   }

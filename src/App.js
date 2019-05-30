@@ -21,6 +21,7 @@ export default function App() {
   return (
     <div className="App">
       <AppHeader />
+      <Player />
       <div className="main">
         <div className="content">
           <SongsList />
@@ -28,7 +29,6 @@ export default function App() {
             <AlbumList />
           </div>
         </div>
-        <Player />
       </div>
     </div>
   );

@@ -2,12 +2,9 @@
 
 .App {
   .main {
-    height: calc(100vh - #{$header-height});
-    padding-top: $header-height;
-    display: flex;
   }
   .content {
-    width: calc(100vw - #{$player-width});
+    width: auto;
   }
 
   .album-widget {
@@ -15,11 +12,30 @@
   }
 
   .Player {
-    position: fixed;
-    right: 0;
-    top: $header-height;
-    width: $player-width;
-    height: calc(100vh - #{$header-height});
+    padding-top: $header-height + 2em;
+  }
+
+
+  @media (min-width: 768px) {
+    .main {
+      padding-top: $header-height;
+      height: calc(100vh - #{$header-height});
+      display: flex;
+    }
+
+    .content {
+      width: calc(100vw - #{$player-width});
+    }
+
+    .Player {
+      position: fixed;
+      right: 0;
+      top: $header-height;
+      width: $player-width;
+      height: calc(100vh - #{$header-height});
+      overflow-y: scroll;
+      padding-top: 0;
+    }
   }
 }
 .spinner {

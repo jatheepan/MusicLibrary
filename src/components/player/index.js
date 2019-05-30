@@ -57,8 +57,9 @@ class Player extends Component {
           status={status}
           onControlClick={(status) => this.props.updatePlayerStatus(status)}
         />
+        <Timeline audio={this.audio} />
         <div className="controls">
-          <div className="player-title">{currentSong && currentSong.song.album.title}</div>
+          <div className="player-title">{currentSong && currentSong.song.album.title || '--'}</div>
         </div>
         <Playlist
           currentSong={currentSong}
@@ -150,6 +151,33 @@ function AlbumThumbnailControl({album, status, onControlClick}) {
       {controlIcon}
     </div>
   );
+}
+
+class Timeline extends Component {
+  state = {
+    currentTime: 0
+  };
+
+  componentDidMount() {
+    if(this.props.audio) {
+      this.props.audio.on('loadedmetadata', () => {
+        console.log(this.props.audio.duration)
+      });
+    }
+  }
+
+  render() {
+    const duration = 0;
+    let indicatorPosition = 0;
+    console.log(duration, this.props)
+    return (
+      <div className="Timeline">
+        <div className={`bar ${duration === 0 ? 'disabled' : ''}`}>
+          <div className="indicator" />
+        </div>
+      </div>
+    );
+  }
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(Player);

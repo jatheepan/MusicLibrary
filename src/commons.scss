@@ -35,6 +35,12 @@ $player-width: 24em;
   background: linear-gradient(110deg,  #af1431 0%, #240488 100%);
 }
 
+@mixin gradient-background-gray {
+  background: -moz-linear-gradient(-45deg,  #e1e1e1 0%, #c6c6c6 100%);
+  background: -webkit-linear-gradient(-45deg,  #e1e1e1 0%, #c6c6c6 100%);
+  background: linear-gradient(110deg,  #e1e1e1 0%, #c6c6c6 100%);
+}
+
 @mixin gradient-text-background {
   background: -webkit-linear-gradient(#a80d64, #d631ff);
   -webkit-background-clip: text;

@@ -1,6 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import packageJson from '../../package.json';
 import actions from '../actions';
 import LoadSpinner from './LoadSpinner';
 import './AppHeader.scss';
@@ -11,6 +12,7 @@ function AppHeader(props) {
   return (
     <div className="AppHeader">
       <h1>Music Library</h1>
+      <span className="version">v{packageJson.version}</span>
       <LoadSpinner loading={loading} />
       <div className="search-form">
         <div className="search-field">

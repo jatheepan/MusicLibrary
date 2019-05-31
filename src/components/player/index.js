@@ -19,10 +19,15 @@ class Player extends Component {
 
   playSong = () => {
     const fileUri = this.props.currentSong.song.file;
+    const audio = this.audio;
     let audioFile = null;
-    if(this.audio) {
-      this.audio.pause();
-      this.audio.currentTime = 0;
+    if(audio) {
+      audio.pause();
+      audio.currentTime = 0;
+      audio.removeEventListener('loadedmetadata', this.loadedMetaDataCallbackFn);
+      audio.removeEventListener('play', this.playCallbackFn);
+      audio.removeEventListener('pause', this.pauseCallbackFn);
+      audio.removeEventListener('ended', this.endedCallbackFn);
     }
     try {
       audioFile = require(`../../songs/${fileUri}`);
@@ -30,6 +35,7 @@ class Player extends Component {
       //TODO: Display error message to user.
       console.error(e);
     }
+
     if(audioFile) {
       this.audio = new Audio(audioFile);
       this.audio.play();
@@ -56,9 +62,7 @@ class Player extends Component {
 
   playCallbackFn = (e) => {
     const audio = e.target;
-    this.setState({
-      currentTime: audio.currentTime
-    });
+    this.setState({currentTime: audio.currentTime});
     this.updateCurrentTimeFn = setInterval(() => {
       const audio = this.audio;
       if(!audio) {
@@ -81,13 +85,9 @@ class Player extends Component {
 
   updateCurrentTime = memoize((currentSong, audio) => {
     if(audio) {
-      audio.removeEventListener('loadedmetadata', this.loadedMetaDataCallbackFn);
       audio.addEventListener('loadedmetadata', this.loadedMetaDataCallbackFn);
-      audio.removeEventListener('play', this.playCallbackFn);
       audio.addEventListener('play', this.playCallbackFn);
-      audio.removeEventListener('pause', this.pauseCallbackFn);
       audio.addEventListener('pause', this.pauseCallbackFn);
-      audio.removeEventListener('ended', this.endedCallbackFn);
       audio.addEventListener('ended', this.endedCallbackFn);
     }
   });

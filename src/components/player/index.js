@@ -7,6 +7,11 @@ import './style.scss';
 
 class Player extends Component {
   audio = null;
+  updateCurrentTimeFn = null;
+  state = {
+    duration: 0,
+    currentTime: 0
+  };
 
   componentDidMount() {
     this.props.getPlaylist();
@@ -28,10 +33,6 @@ class Player extends Component {
     if(audioFile) {
       this.audio = new Audio(audioFile);
       this.audio.play();
-      this.audio.addEventListener('loadedmetadata', () => {
-        // console.log(this.audio.duration);
-        // console.log(this.audio.currentTime);
-      });
     }
   };
 
@@ -49,10 +50,55 @@ class Player extends Component {
     }
   });
 
+  loadedMetaDataCallbackFn = ({target: audio}) => {
+    this.setState({duration: audio.duration});
+  };
+
+  playCallbackFn = (e) => {
+    const audio = e.target;
+    this.setState({
+      currentTime: audio.currentTime
+    });
+    this.updateCurrentTimeFn = setInterval(() => {
+      const audio = this.audio;
+      if(!audio) {
+        clearInterval(this.updateCurrentTimeFn);
+        return;
+      }
+      this.setState({currentTime: audio.currentTime});
+    }, 1000);
+  }
+
+  pauseCallbackFn = (e) => {
+    clearInterval(this.updateCurrentTimeFn);
+  }
+
+  endedCallbackFn = (e) => {
+    this.setState({currentTime: 0});
+    this.props.updatePlayerStatus('stopped');
+    clearInterval(this.updateCurrentTime);
+  }
+
+  updateCurrentTime = memoize((currentSong, audio) => {
+    if(audio) {
+      audio.removeEventListener('loadedmetadata', this.loadedMetaDataCallbackFn);
+      audio.addEventListener('loadedmetadata', this.loadedMetaDataCallbackFn);
+      audio.removeEventListener('play', this.playCallbackFn);
+      audio.addEventListener('play', this.playCallbackFn);
+      audio.removeEventListener('pause', this.pauseCallbackFn);
+      audio.addEventListener('pause', this.pauseCallbackFn);
+      audio.removeEventListener('ended', this.endedCallbackFn);
+      audio.addEventListener('ended', this.endedCallbackFn);
+    }
+  });
+
   render() {
     const {currentSong, songs, status} = this.props;
     if(status && currentSong) {
       this.toggleSong(status, currentSong.song.id);
+    }
+    if(currentSong) {
+      this.updateCurrentTime(currentSong, this.audio);
     }
     return (
       <div className="Player">
@@ -61,7 +107,7 @@ class Player extends Component {
           status={status}
           onControlClick={(status) => this.props.updatePlayerStatus(status)}
         />
-        <Timeline song={currentSong && currentSong.song} audio={this.audio} />
+        <Timeline duration={this.state.duration} currentTime={this.state.currentTime} />
         <div className="controls">
           <div className="player-title">{currentSong && currentSong.song.album.title || '--'}</div>
         </div>
@@ -158,59 +204,11 @@ function AlbumThumbnailControl({album, status, onControlClick}) {
 }
 
 class Timeline extends Component {
-  state = {
-    currentTime: 0,
-    loaded: false,
-    duration: 0,
-    indicatorPosition: 0
-  };
-
-  componentDidMount() {
-  }
-
-  loadedMetaDataCallbackFn = (e) => {
-    const audio = e.target;
-    this.setState({
-      duration: audio.duration,
-      currentTime: audio.currentTime
-    });
-  };
-
-  playCallbackFn = (e) => {
-    const audio = e.target;
-    this.setState({
-      currentTime: audio.currentTime
-    });
-    setInterval(this.updateCurrentTimeFn, 1000);
-  }
-
-  pauseCallbackFn = (e) => {
-    clearInterval(this.updateCurrentTimeFn);
-  }
-
-  updateCurrentTimeFn = () => {
-    this.setState({
-      currentTime: this.props.audio && this.props.audio.currentTime
-    });
-  }
-
-  timelineData = memoize((song, audio) => {
-    if(audio) {
-      audio.removeEventListener('loadedmetadata', this.loadedMetaDataCallbackFn);
-      audio.addEventListener('loadedmetadata', this.loadedMetaDataCallbackFn);
-      audio.removeEventListener('play', this.playCallbackFn);
-      audio.addEventListener('play', this.playCallbackFn);
-      audio.removeEventListener('pause', this.pauseCallbackFn);
-      audio.addEventListener('pause', this.pauseCallbackFn);
-    }
-  });
-
   render() {
-    this.timelineData(this.props.song, this.props.audio);
-    let {indicatorPosition, duration, currentTime} = this.state;
-
+    let {duration, currentTime} = this.props;
     const barWidth = 200;
-    indicatorPosition = (duration / barWidth) * currentTime;
+    const indicatorPosition = duration ? (barWidth / duration) * currentTime : 0;
+
 
     return (
       <div className="Timeline">

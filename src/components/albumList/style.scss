@@ -42,7 +42,7 @@ $column-padding: 1%;
   }
   @media (min-width: 1200px) {
     .album {
-      width: calc(((calc(100vw - #{$player-width}) / 4) - 2em);
+      width: calc(((calc(100vw - #{$player-width}) / 4) - 2em));
     }
   }
 

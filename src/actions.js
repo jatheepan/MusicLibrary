@@ -15,6 +15,7 @@ const PLAYLIST_WILL_FETCH = 'PLAYLIST_WILL_FETCH';
 const PLAYLIST_DID_FETCH = 'PLAYLIST_DID_FETCH';
 const PLAYLIST_FETCH_ERROR = 'PLAYLIST_FETCH_ERROR';
 const PLAYLIST_CHANGE_CURRENT_SONG = 'PLAYLIST_CHANGE_CURRENT_SONG';
+const PLAYLIST_PLAY_NEXT_SONG = 'PLAYLIST_PLAY_NEXT_SONG';
 
 const PLAYER_STATUS_UPDATE = 'PLAYER_STATUS_UPDATE';
 const REPLACE_PLAYLIST = 'REPLACE_PLAYLIST';
@@ -109,6 +110,12 @@ const changeCurrentSong = item => dispatch => {
   });
 };
 
+const playNextSong = () => dispatch => {
+  dispatch({
+    type: PLAYLIST_PLAY_NEXT_SONG,
+    payload: null
+  });
+}
 /**
  * Add single song to playlist.
  * @param song
@@ -150,6 +157,7 @@ export default {
   getAlbums,
   getPlaylist,
   changeCurrentSong,
+  playNextSong,
   addToPlaylist,
   replacePlaylist,
   updatePlayerStatus
@@ -169,6 +177,7 @@ export {
   PLAYLIST_DID_FETCH,
   PLAYLIST_FETCH_ERROR,
   PLAYLIST_CHANGE_CURRENT_SONG,
+  PLAYLIST_PLAY_NEXT_SONG,
   PLAYER_STATUS_UPDATE,
   REPLACE_PLAYLIST
 };

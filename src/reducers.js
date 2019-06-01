@@ -12,6 +12,7 @@ import {
   PLAYLIST_DID_FETCH,
   PLAYLIST_FETCH_ERROR,
   PLAYLIST_CHANGE_CURRENT_SONG,
+  PLAYLIST_PLAY_NEXT_SONG,
   ADD_TO_PLAYLIST,
   PLAYER_STATUS_UPDATE,
   REPLACE_PLAYLIST
@@ -127,6 +128,17 @@ function playListReducer(initialState = {songs: [], currentSong: null, loading: 
 
     case PLAYLIST_CHANGE_CURRENT_SONG:
       state.currentSong = payload;
+      break;
+
+    case PLAYLIST_PLAY_NEXT_SONG:
+      const songs = initialState.songs;
+      const currentSong = initialState.currentSong;
+      const currentSongIndex = songs.findIndex(({song_id}) => song_id === currentSong.song_id);
+      if(currentSongIndex < songs.length) {
+        state.currentSong = songs[currentSongIndex + 1];
+      } else {
+        state.currentSong = null;
+      }
       break;
 
     case ADD_TO_PLAYLIST:

@@ -81,6 +81,10 @@ class Player extends Component {
     this.setState({currentTime: 0});
     this.props.updatePlayerStatus('stopped');
     clearInterval(this.updateCurrentTime);
+    this.props.playNextSong();
+    if(this.props.currentSong) {
+      this.props.updatePlayerStatus('playing');
+    }
   }
 
   updateCurrentTime = memoize((currentSong, audio) => {
@@ -167,6 +171,7 @@ function mapDispatchToProps(dispatch) {
     pageChange: (page) => dispatch(actions.pageChange(page)),
     getPlaylist: () => dispatch(actions.getPlaylist()),
     changeCurrentSong: (item) => dispatch(actions.changeCurrentSong(item)),
+    playNextSong: () => dispatch(actions.playNextSong()),
     updatePlayerStatus: (status) => dispatch(actions.updatePlayerStatus(status))
   };
 }

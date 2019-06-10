@@ -114,7 +114,15 @@ class Player extends Component {
           status={status}
           onControlClick={(status) => this.props.updatePlayerStatus(status)}
         />
-        <Timeline duration={this.state.duration} currentTime={this.state.currentTime} />
+        <Timeline
+          duration={this.state.duration}
+          currentTime={this.state.currentTime}
+          onSeek={time => {
+            if(this.audio) {
+              this.audio.currentTime = time;
+              this.setState({currentTime: time});
+            }
+          }} />
         <div className="controls">
           <div className="player-title">{currentSong ? currentSong.song.album.title : '--'}</div>
         </div>
@@ -220,7 +228,14 @@ class Timeline extends Component {
 
     return (
       <div className="Timeline">
-        <div className="bar-background" style={{width: barWidth}}>
+        <div
+          className="bar-background"
+          style={{width: barWidth}}
+          onClick={e => {
+            const {left: barX} = e.target.getBoundingClientRect();
+            this.props.onSeek((duration / barWidth) * (e.clientX - barX));
+          }}
+        >
           <div className="bar" style={{width: `${indicatorPosition}px`}} />
         </div>
       </div>

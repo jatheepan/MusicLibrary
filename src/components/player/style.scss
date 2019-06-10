@@ -97,6 +97,7 @@
 .Timeline {
   margin: 1.3em 3em 1em 3em;
   .bar-background {
+    cursor: pointer;
     margin: auto;
     background-color: darken($background-color, 8);
   }

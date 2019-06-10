@@ -66,9 +66,7 @@ async function addToPlaylist(song) {
 }
 
 async function replacePlaylist(songs) {
-  playlist = songs;
-
-  return playlist.map((p, i) => {
+  playlist = songs.map((p, i) => {
     const song = songs.find(s => s.id === p.song_id);
     if(song) {
       p.song = song;

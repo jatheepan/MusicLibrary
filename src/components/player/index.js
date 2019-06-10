@@ -18,7 +18,9 @@ class Player extends Component {
   }
 
   playSong = () => {
-    const fileUri = this.props.currentSong.song.file;
+    const currentSong = this.props.songs.find(({id}) => id === this.props.selectedPlaylistItemId);
+    if(!currentSong) return;
+    const fileUri = currentSong.song.file;
     const audio = this.audio;
     let audioFile = null;
     if(audio) {
@@ -42,8 +44,8 @@ class Player extends Component {
     }
   };
 
-  toggleSong = memoize((status, currentSong) => {
-    if(!status || !currentSong) return;
+  toggleSong = memoize((status, selectedPlaylistItemId) => {
+    if(!status || !selectedPlaylistItemId) return;
     if(status === 'playing') {
       this.playSong();
     } else if(status === 'resumed') {
@@ -82,12 +84,12 @@ class Player extends Component {
     this.props.updatePlayerStatus('stopped');
     clearInterval(this.updateCurrentTime);
     this.props.playNextSong();
-    if(this.props.currentSong) {
+    if(this.props.selectedPlaylistItemId) {
       this.props.updatePlayerStatus('playing');
     }
   }
 
-  updateCurrentTime = memoize((currentSong, audio) => {
+  updateCurrentTime = memoize((selectedPlaylistItemId, audio) => {
     if(audio) {
       audio.addEventListener('loadedmetadata', this.loadedMetaDataCallbackFn);
       audio.addEventListener('play', this.playCallbackFn);
@@ -97,10 +99,11 @@ class Player extends Component {
   });
 
   render() {
-    const {currentSong, songs, status} = this.props;
-    if(status && currentSong) {
-      this.toggleSong(status, currentSong.song.id);
+    const {selectedPlaylistItemId, songs, status} = this.props;
+    if(status && selectedPlaylistItemId) {
+      this.toggleSong(status, selectedPlaylistItemId);
     }
+    const currentSong = songs.find(({id}) => id === selectedPlaylistItemId);
     if(currentSong) {
       this.updateCurrentTime(currentSong, this.audio);
     }
@@ -113,10 +116,10 @@ class Player extends Component {
         />
         <Timeline duration={this.state.duration} currentTime={this.state.currentTime} />
         <div className="controls">
-          <div className="player-title">{currentSong && currentSong.song.album.title || '--'}</div>
+          <div className="player-title">{currentSong ? currentSong.song.album.title : '--'}</div>
         </div>
         <Playlist
-          currentSong={currentSong}
+          selectedPlaylistItemId={selectedPlaylistItemId}
           status={status}
           songs={songs}
           onClick={item => {
@@ -138,10 +141,10 @@ class Player extends Component {
  * @returns {XML}
  * @constructor
  */
-function Playlist({songs, currentSong, status, onClick}) {
+function Playlist({songs, selectedPlaylistItemId, status, onClick}) {
   const items = songs.map((item, index) => {
     let currentSongIndicator = null;
-    if(currentSong && item.song.id === currentSong.song.id) {
+    if(item.id === selectedPlaylistItemId) {
       let icon = (status === 'playing' || status === 'resumed') ? 'play' : (status === 'paused') ? 'pause' : null;
       currentSongIndicator = icon && <FontAwesomeIcon icon={icon} className="current-song-indicator" />
     }
@@ -161,7 +164,7 @@ function Playlist({songs, currentSong, status, onClick}) {
 
 function mapStateToProps({playlist, player}) {
   return {
-    currentSong: playlist.currentSong,
+    selectedPlaylistItemId: playlist.selectedPlaylistItemId,
     songs: playlist.songs,
     status: player.status
   };
@@ -171,7 +174,7 @@ function mapDispatchToProps(dispatch) {
   return {
     pageChange: (page) => dispatch(actions.pageChange(page)),
     getPlaylist: () => dispatch(actions.getPlaylist()),
-    changeCurrentSong: (item) => dispatch(actions.changeCurrentSong(item)),
+    changeCurrentSong: (item) => dispatch(actions.changeCurrentSong(item.id)),
     playNextSong: () => dispatch(actions.playNextSong()),
     updatePlayerStatus: (status) => dispatch(actions.updatePlayerStatus(status))
   };

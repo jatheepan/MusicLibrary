@@ -110,7 +110,7 @@ function globalReducer(initialState = {query: '', loading: false}, {type, payloa
  * @param payload
  * @returns {Object}
  */
-function playListReducer(initialState = {songs: [], currentSong: null, loading: false}, {type, payload}) {
+function playListReducer(initialState = {songs: [], selectedPlaylistItemId: null, loading: false}, {type, payload}) {
   const state = {};
   switch(type) {
     case PLAYLIST_WILL_FETCH:
@@ -127,17 +127,18 @@ function playListReducer(initialState = {songs: [], currentSong: null, loading: 
       break;
 
     case PLAYLIST_CHANGE_CURRENT_SONG:
-      state.currentSong = payload;
+      state.selectedPlaylistItemId = payload;
       break;
 
     case PLAYLIST_PLAY_NEXT_SONG:
       const songs = initialState.songs;
-      const currentSong = initialState.currentSong;
-      const currentSongIndex = songs.findIndex(({song_id}) => song_id === currentSong.song_id);
-      if(currentSongIndex < songs.length) {
-        state.currentSong = songs[currentSongIndex + 1];
+      const selectedPlaylistItemId = initialState.selectedPlaylistItemId;
+      const currentSongIndex = songs.findIndex(({id}) => id === selectedPlaylistItemId);
+      const nextSong = songs[currentSongIndex + 1];
+      if(nextSong) {
+        state.selectedPlaylistItemId = nextSong.id;
       } else {
-        state.currentSong = null;
+        state.selectedPlaylistItemId = null;
       }
       break;
 
@@ -147,7 +148,7 @@ function playListReducer(initialState = {songs: [], currentSong: null, loading: 
 
     case REPLACE_PLAYLIST:
       state.songs = payload;
-      state.currentSong = state.songs.length ? state.songs[0] : null;
+      state.selectedPlaylistItemId = state.songs.length ? state.songs[0].id : null;
       break;
 
     default:

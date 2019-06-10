@@ -121,10 +121,12 @@ const playNextSong = () => dispatch => {
  * @param song
  */
 const addToPlaylist = song => dispatch => {
-  dispatch({
-    type: ADD_TO_PLAYLIST,
-    payload: song
-  });
+  library.addToPlaylist(song)
+    .then(playlist => dispatch({
+      type: ADD_TO_PLAYLIST,
+      payload: playlist
+    }))
+    .catch(console.error);
 };
 
 /**
@@ -133,10 +135,12 @@ const addToPlaylist = song => dispatch => {
  * @param songs
  */
 const replacePlaylist = songs => dispatch => {
-  dispatch({
-    type: REPLACE_PLAYLIST,
-    payload: songs
-  });
+  library.replacePlaylist(songs)
+    .then(playlist => dispatch({
+      type: REPLACE_PLAYLIST,
+      payload: songs
+    }))
+  .catch(console.error);
 };
 
 /**

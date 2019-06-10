@@ -142,11 +142,7 @@ function playListReducer(initialState = {songs: [], currentSong: null, loading: 
       break;
 
     case ADD_TO_PLAYLIST:
-      state.songs = [].concat(initialState.songs);
-      state.songs.push({
-        song_id: payload.id,
-        song: payload
-      });
+      state.songs = payload;
       break;
 
     case REPLACE_PLAYLIST:

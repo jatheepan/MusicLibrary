@@ -145,6 +145,7 @@ function Playlist({songs, currentSong, status, onClick}) {
       let icon = (status === 'playing' || status === 'resumed') ? 'play' : (status === 'paused') ? 'pause' : null;
       currentSongIndicator = icon && <FontAwesomeIcon icon={icon} className="current-song-indicator" />
     }
+
     return (
       <div key={index} className="row" onClick={() => onClick(item)}>
         {currentSongIndicator}
@@ -213,7 +214,6 @@ class Timeline extends Component {
     let {duration, currentTime} = this.props;
     const barWidth = 200;
     const indicatorPosition = duration ? (barWidth / duration) * currentTime : 0;
-
 
     return (
       <div className="Timeline">

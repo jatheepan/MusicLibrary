@@ -12,8 +12,18 @@ function getPlaylist() {
   return db.getPlaylist();
 }
 
+function addToPlaylist(song) {
+  return db.addToPlaylist(song);
+}
+
+function replacePlaylist(songs) {
+  return db.replacePlaylist(songs);
+}
+
 export default {
   getSongs,
   getAlbums,
-  getPlaylist
+  getPlaylist,
+  addToPlaylist,
+  replacePlaylist
 };

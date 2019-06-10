@@ -8,6 +8,8 @@ import albumsCollection from './albums.json';
 import songsCollection from './songs.json';
 import playlistCollection from './playlist.json';
 
+let playlist = playlistCollection;
+let playlistLastItemId = playlistCollection.length;
 /**
  * Just to simulate the delay of real api calls.
  * @param payload
@@ -42,13 +44,40 @@ function getSongs(query = '', sort = {property: 'title', direction: 'asc'}) {
 
 async function getPlaylist() {
   const songs = await getSongs();
-  return playlistCollection.map(p => {
+  return playlist.map(p => {
     const song = songs.find(s => s.id === p.song_id);
     if(song) {
       p.song = song;
     }
     return p;
   });
+}
+
+async function addToPlaylist(song) {
+  const nextId = playlistLastItemId + 1;
+
+  playlist.push({
+    id: nextId,
+    song_id: song.id,
+    song
+  });
+  playlistLastItemId = nextId;
+  return [].concat(playlist);
+}
+
+async function replacePlaylist(songs) {
+  playlist = songs;
+
+  return playlist.map((p, i) => {
+    const song = songs.find(s => s.id === p.song_id);
+    if(song) {
+      p.song = song;
+    }
+    p.id = i + 1;
+    return p;
+  });
+  playlistLastItemId = playlist.length;
+  return [].concat(playlist);
 }
 
 function filterList(list, query) {
@@ -98,5 +127,7 @@ function sortList(list, sort) {
 export default {
   getAlbums,
   getSongs,
-  getPlaylist
+  getPlaylist,
+  addToPlaylist,
+  replacePlaylist
 };

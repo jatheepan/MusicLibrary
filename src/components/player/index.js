@@ -44,7 +44,7 @@ class Player extends Component {
     }
   };
 
-  toggleSong = memoize((status, selectedPlaylistItemId) => {
+  toggleSong = memoize((songs, status, selectedPlaylistItemId) => {
     if(!status || !selectedPlaylistItemId) return;
     if(status === 'playing') {
       this.playSong();
@@ -101,7 +101,7 @@ class Player extends Component {
   render() {
     const {selectedPlaylistItemId, songs, status} = this.props;
     if(status && selectedPlaylistItemId) {
-      this.toggleSong(status, selectedPlaylistItemId);
+      this.toggleSong(songs, status, selectedPlaylistItemId);
     }
     const currentSong = songs.find(({id}) => id === selectedPlaylistItemId);
     if(currentSong) {

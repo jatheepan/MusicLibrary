@@ -1,0 +1,27 @@
+{
+  "files": {
+    "main.css": "/MusicLibrary/static/css/main.cca7d0d8.chunk.css",
+    "main.js": "/MusicLibrary/static/js/main.ce6d885e.chunk.js",
+    "main.js.map": "/MusicLibrary/static/js/main.ce6d885e.chunk.js.map",
+    "runtime~main.js": "/MusicLibrary/static/js/runtime~main.dec6949a.js",
+    "runtime~main.js.map": "/MusicLibrary/static/js/runtime~main.dec6949a.js.map",
+    "static/js/2.f22f7d32.chunk.js": "/MusicLibrary/static/js/2.f22f7d32.chunk.js",
+    "static/js/2.f22f7d32.chunk.js.map": "/MusicLibrary/static/js/2.f22f7d32.chunk.js.map",
+    "index.html": "/MusicLibrary/index.html",
+    "precache-manifest.d0009ea38ba719d8483897fb00bb27c6.js": "/MusicLibrary/precache-manifest.d0009ea38ba719d8483897fb00bb27c6.js",
+    "service-worker.js": "/MusicLibrary/service-worker.js",
+    "static/css/main.cca7d0d8.chunk.css.map": "/MusicLibrary/static/css/main.cca7d0d8.chunk.css.map",
+    "static/media/sample1.mp3": "/MusicLibrary/static/media/sample1.dd955e25.mp3",
+    "static/media/sample10.mp3": "/MusicLibrary/static/media/sample10.3f3c2fa5.mp3",
+    "static/media/sample11.mp3": "/MusicLibrary/static/media/sample11.b17f938f.mp3",
+    "static/media/sample12.mp3": "/MusicLibrary/static/media/sample12.67f34480.mp3",
+    "static/media/sample2.mp3": "/MusicLibrary/static/media/sample2.e761de1a.mp3",
+    "static/media/sample3.mp3": "/MusicLibrary/static/media/sample3.7e0c10ce.mp3",
+    "static/media/sample4.mp3": "/MusicLibrary/static/media/sample4.bfe7fb25.mp3",
+    "static/media/sample5.mp3": "/MusicLibrary/static/media/sample5.c2e5fc2f.mp3",
+    "static/media/sample6.mp3": "/MusicLibrary/static/media/sample6.72a7a470.mp3",
+    "static/media/sample7.mp3": "/MusicLibrary/static/media/sample7.508dd444.mp3",
+    "static/media/sample8.mp3": "/MusicLibrary/static/media/sample8.6f257638.mp3",
+    "static/media/sample9.mp3": "/MusicLibrary/static/media/sample9.fa355b13.mp3"
+  }
+}

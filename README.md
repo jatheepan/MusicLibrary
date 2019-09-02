@@ -1,6 +1,6 @@
 # Music Library
 ## Demo
-[cutedrops.com](http://cutedrops.com).
+[demo](https://jatheepan.github.io/MusicLibrary/).
 
 ## This is a react app for music library
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).

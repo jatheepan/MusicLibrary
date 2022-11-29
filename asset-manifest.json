@@ -1,27 +1,25 @@
 {
   "files": {
-    "main.css": "/MusicLibrary/static/css/main.cca7d0d8.chunk.css",
-    "main.js": "/MusicLibrary/static/js/main.ce6d885e.chunk.js",
-    "main.js.map": "/MusicLibrary/static/js/main.ce6d885e.chunk.js.map",
-    "runtime~main.js": "/MusicLibrary/static/js/runtime~main.dec6949a.js",
-    "runtime~main.js.map": "/MusicLibrary/static/js/runtime~main.dec6949a.js.map",
-    "static/js/2.f22f7d32.chunk.js": "/MusicLibrary/static/js/2.f22f7d32.chunk.js",
-    "static/js/2.f22f7d32.chunk.js.map": "/MusicLibrary/static/js/2.f22f7d32.chunk.js.map",
-    "index.html": "/MusicLibrary/index.html",
-    "precache-manifest.d0009ea38ba719d8483897fb00bb27c6.js": "/MusicLibrary/precache-manifest.d0009ea38ba719d8483897fb00bb27c6.js",
-    "service-worker.js": "/MusicLibrary/service-worker.js",
-    "static/css/main.cca7d0d8.chunk.css.map": "/MusicLibrary/static/css/main.cca7d0d8.chunk.css.map",
-    "static/media/sample1.mp3": "/MusicLibrary/static/media/sample1.dd955e25.mp3",
-    "static/media/sample10.mp3": "/MusicLibrary/static/media/sample10.3f3c2fa5.mp3",
-    "static/media/sample11.mp3": "/MusicLibrary/static/media/sample11.b17f938f.mp3",
-    "static/media/sample12.mp3": "/MusicLibrary/static/media/sample12.67f34480.mp3",
-    "static/media/sample2.mp3": "/MusicLibrary/static/media/sample2.e761de1a.mp3",
-    "static/media/sample3.mp3": "/MusicLibrary/static/media/sample3.7e0c10ce.mp3",
-    "static/media/sample4.mp3": "/MusicLibrary/static/media/sample4.bfe7fb25.mp3",
-    "static/media/sample5.mp3": "/MusicLibrary/static/media/sample5.c2e5fc2f.mp3",
-    "static/media/sample6.mp3": "/MusicLibrary/static/media/sample6.72a7a470.mp3",
-    "static/media/sample7.mp3": "/MusicLibrary/static/media/sample7.508dd444.mp3",
-    "static/media/sample8.mp3": "/MusicLibrary/static/media/sample8.6f257638.mp3",
-    "static/media/sample9.mp3": "/MusicLibrary/static/media/sample9.fa355b13.mp3"
-  }
+    "main.css": "/static/css/main.9e166b41.css",
+    "main.js": "/static/js/main.619c9eee.js",
+    "static/media/sample7.mp3": "/static/media/sample7.1917fba07c5c5b9df62d.mp3",
+    "static/media/sample9.mp3": "/static/media/sample9.3fd2533afdedce1fe11c.mp3",
+    "static/media/sample3.mp3": "/static/media/sample3.5411fcb626a1d0e58351.mp3",
+    "static/media/sample1.mp3": "/static/media/sample1.a643539794fe2a9ed8cb.mp3",
+    "static/media/sample10.mp3": "/static/media/sample10.369c59f57b560f1ef07f.mp3",
+    "static/media/sample2.mp3": "/static/media/sample2.605c41dce546d04ef4ab.mp3",
+    "static/media/sample4.mp3": "/static/media/sample4.ff9564197104f157979f.mp3",
+    "static/media/sample6.mp3": "/static/media/sample6.f3f9ca4e2aade01abe26.mp3",
+    "static/media/sample5.mp3": "/static/media/sample5.804ff7025fa3f8cec27a.mp3",
+    "static/media/sample8.mp3": "/static/media/sample8.5090481e2b866dfad6ac.mp3",
+    "static/media/sample11.mp3": "/static/media/sample11.183eaadcfd4cf3ce9b4c.mp3",
+    "static/media/sample12.mp3": "/static/media/sample12.1e2ea2daa1bc6eb6c424.mp3",
+    "index.html": "/index.html",
+    "main.9e166b41.css.map": "/static/css/main.9e166b41.css.map",
+    "main.619c9eee.js.map": "/static/js/main.619c9eee.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.9e166b41.css",
+    "static/js/main.619c9eee.js"
+  ]
 }
